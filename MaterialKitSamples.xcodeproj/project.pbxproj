@@ -12,9 +12,22 @@
 		3F91A4E11C1A0AEC00C7A3EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F91A4DF1C1A0AEC00C7A3EB /* Main.storyboard */; };
 		3F91A4E31C1A0AEC00C7A3EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F91A4E21C1A0AEC00C7A3EB /* Assets.xcassets */; };
 		3F91A4E61C1A0AEC00C7A3EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F91A4E41C1A0AEC00C7A3EB /* LaunchScreen.storyboard */; };
+		3F9807F11C1A0E2B000E6BFF /* CardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807E51C1A0E2B000E6BFF /* CardView.storyboard */; };
+		3F9807F21C1A0E2B000E6BFF /* ImageCardView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807E71C1A0E2B000E6BFF /* ImageCardView.storyboard */; };
+		3F9807F31C1A0E2B000E6BFF /* MaterialButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807E91C1A0E2B000E6BFF /* MaterialButton.storyboard */; };
+		3F9807F41C1A0E2B000E6BFF /* MaterialPulseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807EB1C1A0E2B000E6BFF /* MaterialPulseView.storyboard */; };
+		3F9807F51C1A0E2B000E6BFF /* NavigationBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807ED1C1A0E2B000E6BFF /* NavigationBarView.storyboard */; };
+		3F9807FF1C1A0F13000E6BFF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807F81C1A0F13000E6BFF /* CardViewController.swift */; };
+		3F9808001C1A0F13000E6BFF /* NavBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */; };
+		3F9808011C1A0F13000E6BFF /* ImageCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */; };
+		3F9808021C1A0F13000E6BFF /* MaterialPulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */; };
+		3F9808031C1A0F13000E6BFF /* MaterialButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */; };
+		3F9808041C1A0F13000E6BFF /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */; };
+		A28878F1BBDD941962A4C650 /* Pods_MaterialKitSamples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A02AE484AB1F9CF54C6AEC0 /* Pods-MaterialKitSamples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialKitSamples.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples.release.xcconfig"; sourceTree = "<group>"; };
 		3F91A4D81C1A0AEC00C7A3EB /* MaterialKitSamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialKitSamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91A4DB1C1A0AEC00C7A3EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F91A4DD1C1A0AEC00C7A3EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +35,19 @@
 		3F91A4E21C1A0AEC00C7A3EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F91A4E51C1A0AEC00C7A3EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F91A4E71C1A0AEC00C7A3EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F9807E61C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CardView.storyboard; sourceTree = "<group>"; };
+		3F9807E81C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ImageCardView.storyboard; sourceTree = "<group>"; };
+		3F9807EA1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialButton.storyboard; sourceTree = "<group>"; };
+		3F9807EC1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialPulseView.storyboard; sourceTree = "<group>"; };
+		3F9807EE1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NavigationBarView.storyboard; sourceTree = "<group>"; };
+		3F9807F81C1A0F13000E6BFF /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardViewController.swift; path = Controllers/CardViewController.swift; sourceTree = "<group>"; };
+		3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavBarViewController.swift; path = Controllers/NavBarViewController.swift; sourceTree = "<group>"; };
+		3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCardViewController.swift; path = Controllers/ImageCardViewController.swift; sourceTree = "<group>"; };
+		3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialPulseViewController.swift; path = Controllers/MaterialPulseViewController.swift; sourceTree = "<group>"; };
+		3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialButtonViewController.swift; path = Controllers/MaterialButtonViewController.swift; sourceTree = "<group>"; };
+		3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideViewController.swift; path = Controllers/SideViewController.swift; sourceTree = "<group>"; };
+		BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialKitSamples.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples.debug.xcconfig"; sourceTree = "<group>"; };
+		F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialKitSamples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A28878F1BBDD941962A4C650 /* Pods_MaterialKitSamples.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +67,8 @@
 			children = (
 				3F91A4DA1C1A0AEC00C7A3EB /* MaterialKitSamples */,
 				3F91A4D91C1A0AEC00C7A3EB /* Products */,
+				8A91A0D5789EC94AF64BB7E8 /* Pods */,
+				E6CEE42FA92FAD069F5D04D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +83,8 @@
 		3F91A4DA1C1A0AEC00C7A3EB /* MaterialKitSamples */ = {
 			isa = PBXGroup;
 			children = (
+				3F9807F71C1A0E45000E6BFF /* Controllers */,
+				3F9807E41C1A0CFB000E6BFF /* StoryBoards */,
 				3F91A4DB1C1A0AEC00C7A3EB /* AppDelegate.swift */,
 				3F91A4DD1C1A0AEC00C7A3EB /* ViewController.swift */,
 				3F91A4DF1C1A0AEC00C7A3EB /* Main.storyboard */,
@@ -64,6 +95,48 @@
 			path = MaterialKitSamples;
 			sourceTree = "<group>";
 		};
+		3F9807E41C1A0CFB000E6BFF /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				3F9807E51C1A0E2B000E6BFF /* CardView.storyboard */,
+				3F9807E71C1A0E2B000E6BFF /* ImageCardView.storyboard */,
+				3F9807E91C1A0E2B000E6BFF /* MaterialButton.storyboard */,
+				3F9807EB1C1A0E2B000E6BFF /* MaterialPulseView.storyboard */,
+				3F9807ED1C1A0E2B000E6BFF /* NavigationBarView.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		3F9807F71C1A0E45000E6BFF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3F9807F81C1A0F13000E6BFF /* CardViewController.swift */,
+				3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */,
+				3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */,
+				3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */,
+				3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */,
+				3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8A91A0D5789EC94AF64BB7E8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */,
+				0A02AE484AB1F9CF54C6AEC0 /* Pods-MaterialKitSamples.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E6CEE42FA92FAD069F5D04D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +144,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F91A4EA1C1A0AEC00C7A3EB /* Build configuration list for PBXNativeTarget "MaterialKitSamples" */;
 			buildPhases = (
+				919C37932AB551DFE8447453 /* Check Pods Manifest.lock */,
 				3F91A4D41C1A0AEC00C7A3EB /* Sources */,
 				3F91A4D51C1A0AEC00C7A3EB /* Frameworks */,
 				3F91A4D61C1A0AEC00C7A3EB /* Resources */,
+				667CB5373966701CAC3387CF /* Embed Pods Frameworks */,
+				3E673A3BB0799DEB13485C8C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,11 +200,64 @@
 			files = (
 				3F91A4E61C1A0AEC00C7A3EB /* LaunchScreen.storyboard in Resources */,
 				3F91A4E31C1A0AEC00C7A3EB /* Assets.xcassets in Resources */,
+				3F9807F21C1A0E2B000E6BFF /* ImageCardView.storyboard in Resources */,
+				3F9807F51C1A0E2B000E6BFF /* NavigationBarView.storyboard in Resources */,
 				3F91A4E11C1A0AEC00C7A3EB /* Main.storyboard in Resources */,
+				3F9807F11C1A0E2B000E6BFF /* CardView.storyboard in Resources */,
+				3F9807F41C1A0E2B000E6BFF /* MaterialPulseView.storyboard in Resources */,
+				3F9807F31C1A0E2B000E6BFF /* MaterialButton.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E673A3BB0799DEB13485C8C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		667CB5373966701CAC3387CF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		919C37932AB551DFE8447453 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3F91A4D41C1A0AEC00C7A3EB /* Sources */ = {
@@ -137,6 +266,12 @@
 			files = (
 				3F91A4DE1C1A0AEC00C7A3EB /* ViewController.swift in Sources */,
 				3F91A4DC1C1A0AEC00C7A3EB /* AppDelegate.swift in Sources */,
+				3F9808011C1A0F13000E6BFF /* ImageCardViewController.swift in Sources */,
+				3F9808031C1A0F13000E6BFF /* MaterialButtonViewController.swift in Sources */,
+				3F9808001C1A0F13000E6BFF /* NavBarViewController.swift in Sources */,
+				3F9808041C1A0F13000E6BFF /* SideViewController.swift in Sources */,
+				3F9807FF1C1A0F13000E6BFF /* CardViewController.swift in Sources */,
+				3F9808021C1A0F13000E6BFF /* MaterialPulseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +292,46 @@
 				3F91A4E51C1A0AEC00C7A3EB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		3F9807E51C1A0E2B000E6BFF /* CardView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9807E61C1A0E2B000E6BFF /* Base */,
+			);
+			name = CardView.storyboard;
+			sourceTree = "<group>";
+		};
+		3F9807E71C1A0E2B000E6BFF /* ImageCardView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9807E81C1A0E2B000E6BFF /* Base */,
+			);
+			name = ImageCardView.storyboard;
+			sourceTree = "<group>";
+		};
+		3F9807E91C1A0E2B000E6BFF /* MaterialButton.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9807EA1C1A0E2B000E6BFF /* Base */,
+			);
+			name = MaterialButton.storyboard;
+			sourceTree = "<group>";
+		};
+		3F9807EB1C1A0E2B000E6BFF /* MaterialPulseView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9807EC1C1A0E2B000E6BFF /* Base */,
+			);
+			name = MaterialPulseView.storyboard;
+			sourceTree = "<group>";
+		};
+		3F9807ED1C1A0E2B000E6BFF /* NavigationBarView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F9807EE1C1A0E2B000E6BFF /* Base */,
+			);
+			name = NavigationBarView.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -245,9 +420,11 @@
 		};
 		3F91A4EB1C1A0AEC00C7A3EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -256,9 +433,11 @@
 		};
 		3F91A4EC1C1A0AEC00C7A3EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A02AE484AB1F9CF54C6AEC0 /* Pods-MaterialKitSamples.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -284,6 +463,7 @@
 				3F91A4EC1C1A0AEC00C7A3EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

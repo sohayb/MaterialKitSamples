@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateViewControllerWithIdentifier("MainViewController")
+        let sideVC = storyboard.instantiateViewControllerWithIdentifier("SideViewController")
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = SideNavigationViewController(mainViewController: mainVC, sideViewController: sideVC)
+        window?.makeKeyAndVisible()
         return true
     }
 
