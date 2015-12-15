@@ -59,9 +59,8 @@ class ViewController: UIViewController {
     @IBAction func goToNavigationBarView(sender: AnyObject) {
         let st = UIStoryboard(name: "NavigationBarView", bundle: nil)
         let vc = st.instantiateViewControllerWithIdentifier("NavBarViewController")
-        self.presentViewController(vc, animated: true, completion: nil)
+        self.showViewController(vc, sender: self)
     }
-    
     // FabButton handler.
     func handleFabButton() {
         sideNavigationViewController?.toggle()

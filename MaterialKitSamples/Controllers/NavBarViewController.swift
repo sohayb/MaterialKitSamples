@@ -25,9 +25,22 @@ class NavBarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Examples of using NavigationBarView
         prepareNavigationBarViewExample()
+    }
+    
+    @IBAction func goBack(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        super.viewWillDisappear(animated)
     }
     
     /**
@@ -73,8 +86,8 @@ class NavBarViewController: UIViewController {
         let img1: UIImage? = UIImage(named: "ic_menu_white")
         let btn1: FlatButton = FlatButton()
         btn1.pulseColor = MaterialColor.white
-        btn1.pulseFill = true
-        btn1.pulseScale = false
+        btn1.pulseFill = false
+        btn1.pulseScale = true
         btn1.setImage(img1, forState: .Normal)
         btn1.setImage(img1, forState: .Highlighted)
         
