@@ -7,6 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F59BBAB1C23397F0019CA47 /* StoryBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBAA1C23397F0019CA47 /* StoryBoardViewController.swift */; };
+		3F59BBAD1C23398F0019CA47 /* ProgrammaticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBAC1C23398F0019CA47 /* ProgrammaticViewController.swift */; };
+		3F59BBB51C233CCC0019CA47 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBAF1C233CCC0019CA47 /* CardViewController.swift */; };
+		3F59BBB61C233CCC0019CA47 /* ImageCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBB01C233CCC0019CA47 /* ImageCardViewController.swift */; };
+		3F59BBB71C233CCC0019CA47 /* MaterialButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBB11C233CCC0019CA47 /* MaterialButtonViewController.swift */; };
+		3F59BBB81C233CCC0019CA47 /* MaterialPulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBB21C233CCC0019CA47 /* MaterialPulseViewController.swift */; };
+		3F59BBB91C233CCC0019CA47 /* NavBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBB31C233CCC0019CA47 /* NavBarViewController.swift */; };
+		3F59BBBA1C233CCC0019CA47 /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBB41C233CCC0019CA47 /* SideViewController.swift */; };
+		3F59BBC81C233DE90019CA47 /* PCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBBC1C233DE90019CA47 /* PCaptureViewController.swift */; };
+		3F59BBC91C233DE90019CA47 /* PCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBBD1C233DE90019CA47 /* PCardViewController.swift */; };
+		3F59BBCA1C233DE90019CA47 /* ContentKit+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBBE1C233DE90019CA47 /* ContentKit+UIImage.swift */; };
+		3F59BBCB1C233DE90019CA47 /* PImageCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBBF1C233DE90019CA47 /* PImageCardViewController.swift */; };
+		3F59BBCC1C233DE90019CA47 /* PMaterialButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC01C233DE90019CA47 /* PMaterialButtonViewController.swift */; };
+		3F59BBCD1C233DE90019CA47 /* PMaterialLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */; };
+		3F59BBCE1C233DE90019CA47 /* PMaterialLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */; };
+		3F59BBCF1C233DE90019CA47 /* PMaterialPulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */; };
+		3F59BBD01C233DE90019CA47 /* PMaterialStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */; };
+		3F59BBD11C233DE90019CA47 /* PMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */; };
+		3F59BBD21C233DE90019CA47 /* PNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */; };
+		3F59BBD31C233DE90019CA47 /* PTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */; };
 		3F91A4DC1C1A0AEC00C7A3EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91A4DB1C1A0AEC00C7A3EB /* AppDelegate.swift */; };
 		3F91A4DE1C1A0AEC00C7A3EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91A4DD1C1A0AEC00C7A3EB /* ViewController.swift */; };
 		3F91A4E11C1A0AEC00C7A3EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F91A4DF1C1A0AEC00C7A3EB /* Main.storyboard */; };
@@ -17,17 +37,31 @@
 		3F9807F31C1A0E2B000E6BFF /* MaterialButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807E91C1A0E2B000E6BFF /* MaterialButton.storyboard */; };
 		3F9807F41C1A0E2B000E6BFF /* MaterialPulseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807EB1C1A0E2B000E6BFF /* MaterialPulseView.storyboard */; };
 		3F9807F51C1A0E2B000E6BFF /* NavigationBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807ED1C1A0E2B000E6BFF /* NavigationBarView.storyboard */; };
-		3F9807FF1C1A0F13000E6BFF /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807F81C1A0F13000E6BFF /* CardViewController.swift */; };
-		3F9808001C1A0F13000E6BFF /* NavBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */; };
-		3F9808011C1A0F13000E6BFF /* ImageCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */; };
-		3F9808021C1A0F13000E6BFF /* MaterialPulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */; };
-		3F9808031C1A0F13000E6BFF /* MaterialButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */; };
-		3F9808041C1A0F13000E6BFF /* SideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */; };
 		A28878F1BBDD941962A4C650 /* Pods_MaterialKitSamples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A02AE484AB1F9CF54C6AEC0 /* Pods-MaterialKitSamples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialKitSamples.release.xcconfig"; path = "Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples.release.xcconfig"; sourceTree = "<group>"; };
+		3F59BBAA1C23397F0019CA47 /* StoryBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoardViewController.swift; sourceTree = "<group>"; };
+		3F59BBAC1C23398F0019CA47 /* ProgrammaticViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgrammaticViewController.swift; sourceTree = "<group>"; };
+		3F59BBAF1C233CCC0019CA47 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		3F59BBB01C233CCC0019CA47 /* ImageCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardViewController.swift; sourceTree = "<group>"; };
+		3F59BBB11C233CCC0019CA47 /* MaterialButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButtonViewController.swift; sourceTree = "<group>"; };
+		3F59BBB21C233CCC0019CA47 /* MaterialPulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialPulseViewController.swift; sourceTree = "<group>"; };
+		3F59BBB31C233CCC0019CA47 /* NavBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavBarViewController.swift; sourceTree = "<group>"; };
+		3F59BBB41C233CCC0019CA47 /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideViewController.swift; sourceTree = "<group>"; };
+		3F59BBBC1C233DE90019CA47 /* PCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCaptureViewController.swift; sourceTree = "<group>"; };
+		3F59BBBD1C233DE90019CA47 /* PCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PCardViewController.swift; sourceTree = "<group>"; };
+		3F59BBBE1C233DE90019CA47 /* ContentKit+UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentKit+UIImage.swift"; sourceTree = "<group>"; };
+		3F59BBBF1C233DE90019CA47 /* PImageCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PImageCardViewController.swift; sourceTree = "<group>"; };
+		3F59BBC01C233DE90019CA47 /* PMaterialButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialButtonViewController.swift; sourceTree = "<group>"; };
+		3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialLayerViewController.swift; sourceTree = "<group>"; };
+		3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialLayoutViewController.swift; sourceTree = "<group>"; };
+		3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialPulseViewController.swift; sourceTree = "<group>"; };
+		3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialStackViewController.swift; sourceTree = "<group>"; };
+		3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialViewController.swift; sourceTree = "<group>"; };
+		3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNavigationBarViewController.swift; sourceTree = "<group>"; };
+		3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTextFieldViewController.swift; sourceTree = "<group>"; };
 		3F91A4D81C1A0AEC00C7A3EB /* MaterialKitSamples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaterialKitSamples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F91A4DB1C1A0AEC00C7A3EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F91A4DD1C1A0AEC00C7A3EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,12 +74,6 @@
 		3F9807EA1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialButton.storyboard; sourceTree = "<group>"; };
 		3F9807EC1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialPulseView.storyboard; sourceTree = "<group>"; };
 		3F9807EE1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NavigationBarView.storyboard; sourceTree = "<group>"; };
-		3F9807F81C1A0F13000E6BFF /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardViewController.swift; path = Controllers/CardViewController.swift; sourceTree = "<group>"; };
-		3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavBarViewController.swift; path = Controllers/NavBarViewController.swift; sourceTree = "<group>"; };
-		3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageCardViewController.swift; path = Controllers/ImageCardViewController.swift; sourceTree = "<group>"; };
-		3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialPulseViewController.swift; path = Controllers/MaterialPulseViewController.swift; sourceTree = "<group>"; };
-		3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MaterialButtonViewController.swift; path = Controllers/MaterialButtonViewController.swift; sourceTree = "<group>"; };
-		3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SideViewController.swift; path = Controllers/SideViewController.swift; sourceTree = "<group>"; };
 		BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialKitSamples.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples.debug.xcconfig"; sourceTree = "<group>"; };
 		F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialKitSamples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -62,6 +90,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F59BBAE1C233CCC0019CA47 /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				3F59BBAF1C233CCC0019CA47 /* CardViewController.swift */,
+				3F59BBB01C233CCC0019CA47 /* ImageCardViewController.swift */,
+				3F59BBB11C233CCC0019CA47 /* MaterialButtonViewController.swift */,
+				3F59BBB21C233CCC0019CA47 /* MaterialPulseViewController.swift */,
+				3F59BBB31C233CCC0019CA47 /* NavBarViewController.swift */,
+				3F59BBB41C233CCC0019CA47 /* SideViewController.swift */,
+			);
+			name = StoryBoard;
+			path = Controllers/StoryBoard;
+			sourceTree = "<group>";
+		};
+		3F59BBBB1C233DE90019CA47 /* Programmatic */ = {
+			isa = PBXGroup;
+			children = (
+				3F59BBBC1C233DE90019CA47 /* PCaptureViewController.swift */,
+				3F59BBBD1C233DE90019CA47 /* PCardViewController.swift */,
+				3F59BBBE1C233DE90019CA47 /* ContentKit+UIImage.swift */,
+				3F59BBBF1C233DE90019CA47 /* PImageCardViewController.swift */,
+				3F59BBC01C233DE90019CA47 /* PMaterialButtonViewController.swift */,
+				3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */,
+				3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */,
+				3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */,
+				3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */,
+				3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */,
+				3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */,
+				3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */,
+			);
+			name = Programmatic;
+			path = Controllers/Programmatic;
+			sourceTree = "<group>";
+		};
 		3F91A4CF1C1A0AEC00C7A3EB = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +153,8 @@
 				3F91A4E21C1A0AEC00C7A3EB /* Assets.xcassets */,
 				3F91A4E41C1A0AEC00C7A3EB /* LaunchScreen.storyboard */,
 				3F91A4E71C1A0AEC00C7A3EB /* Info.plist */,
+				3F59BBAA1C23397F0019CA47 /* StoryBoardViewController.swift */,
+				3F59BBAC1C23398F0019CA47 /* ProgrammaticViewController.swift */,
 			);
 			path = MaterialKitSamples;
 			sourceTree = "<group>";
@@ -110,12 +174,8 @@
 		3F9807F71C1A0E45000E6BFF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F9807F81C1A0F13000E6BFF /* CardViewController.swift */,
-				3F9807F91C1A0F13000E6BFF /* NavBarViewController.swift */,
-				3F9807FA1C1A0F13000E6BFF /* ImageCardViewController.swift */,
-				3F9807FB1C1A0F13000E6BFF /* MaterialPulseViewController.swift */,
-				3F9807FC1C1A0F13000E6BFF /* MaterialButtonViewController.swift */,
-				3F9807FD1C1A0F13000E6BFF /* SideViewController.swift */,
+				3F59BBBB1C233DE90019CA47 /* Programmatic */,
+				3F59BBAE1C233CCC0019CA47 /* StoryBoard */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -265,13 +325,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F91A4DE1C1A0AEC00C7A3EB /* ViewController.swift in Sources */,
+				3F59BBCA1C233DE90019CA47 /* ContentKit+UIImage.swift in Sources */,
+				3F59BBD01C233DE90019CA47 /* PMaterialStackViewController.swift in Sources */,
+				3F59BBCC1C233DE90019CA47 /* PMaterialButtonViewController.swift in Sources */,
+				3F59BBB81C233CCC0019CA47 /* MaterialPulseViewController.swift in Sources */,
+				3F59BBC81C233DE90019CA47 /* PCaptureViewController.swift in Sources */,
+				3F59BBCD1C233DE90019CA47 /* PMaterialLayerViewController.swift in Sources */,
+				3F59BBCB1C233DE90019CA47 /* PImageCardViewController.swift in Sources */,
 				3F91A4DC1C1A0AEC00C7A3EB /* AppDelegate.swift in Sources */,
-				3F9808011C1A0F13000E6BFF /* ImageCardViewController.swift in Sources */,
-				3F9808031C1A0F13000E6BFF /* MaterialButtonViewController.swift in Sources */,
-				3F9808001C1A0F13000E6BFF /* NavBarViewController.swift in Sources */,
-				3F9808041C1A0F13000E6BFF /* SideViewController.swift in Sources */,
-				3F9807FF1C1A0F13000E6BFF /* CardViewController.swift in Sources */,
-				3F9808021C1A0F13000E6BFF /* MaterialPulseViewController.swift in Sources */,
+				3F59BBD11C233DE90019CA47 /* PMaterialViewController.swift in Sources */,
+				3F59BBB61C233CCC0019CA47 /* ImageCardViewController.swift in Sources */,
+				3F59BBB71C233CCC0019CA47 /* MaterialButtonViewController.swift in Sources */,
+				3F59BBBA1C233CCC0019CA47 /* SideViewController.swift in Sources */,
+				3F59BBCF1C233DE90019CA47 /* PMaterialPulseViewController.swift in Sources */,
+				3F59BBB91C233CCC0019CA47 /* NavBarViewController.swift in Sources */,
+				3F59BBC91C233DE90019CA47 /* PCardViewController.swift in Sources */,
+				3F59BBCE1C233DE90019CA47 /* PMaterialLayoutViewController.swift in Sources */,
+				3F59BBAB1C23397F0019CA47 /* StoryBoardViewController.swift in Sources */,
+				3F59BBD31C233DE90019CA47 /* PTextFieldViewController.swift in Sources */,
+				3F59BBB51C233CCC0019CA47 /* CardViewController.swift in Sources */,
+				3F59BBD21C233DE90019CA47 /* PNavigationBarViewController.swift in Sources */,
+				3F59BBAD1C23398F0019CA47 /* ProgrammaticViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +498,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -437,7 +511,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";

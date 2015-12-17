@@ -3,5 +3,5 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'MaterialKitSamples' do
-pod 'MK'
+pod 'MK', '~>1.25.2'
 end

@@ -24,7 +24,7 @@ public struct MaterialTheme {
 	public struct basicCardView {}
 	public struct imageCardView {}
 	public struct navigationBarView {}
-	public struct basicCaptureView {}
+	public struct captureView {}
 	public struct textLayer {}
 	public struct label {}
 	public struct flatButton {}
@@ -205,14 +205,14 @@ public extension MaterialTheme.navigationBarView {
 	public static var zPosition: CGFloat = 100
 }
 
-// basicCaptureView
-public extension MaterialTheme.basicCaptureView {
+// captureView
+public extension MaterialTheme.captureView {
 	// shadow
-	public static var shadowDepth: MaterialDepth = .Depth2
+	public static var shadowDepth: MaterialDepth = .None
 	public static var shadowColor: UIColor = MaterialColor.black
 	
 	// shape
-	public static var contentInsetsRef: UIEdgeInsets = MaterialEdgeInsetsToValue(.Square3)
+	public static var contentInsetsRef: UIEdgeInsets = MaterialEdgeInsetsToValue(.Square4)
 	
 	// border
 	public static var borderWidth: MaterialBorder = .None
@@ -223,6 +223,12 @@ public extension MaterialTheme.basicCaptureView {
 	
 	// interaction
 	public static var userInteractionEnabled: Bool = true
+	
+	// image
+	public static var contentsRect: CGRect = CGRectMake(0, 0, 1, 1)
+	public static var contentsCenter: CGRect = CGRectMake(0, 0, 1, 1)
+	public static var contentsScale: CGFloat = UIScreen.mainScreen().scale
+	public static var contentsGravity: MaterialGravity = .ResizeAspectFill
 	
 	// position
 	public static var zPosition: CGFloat = 0

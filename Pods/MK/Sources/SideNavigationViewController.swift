@@ -189,14 +189,14 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 	}
 	
 	/**
-	:name:	maintViewController
+	:name:	mainViewController
 	*/
-	public var mainViewController: UIViewController!
+	public private(set) var mainViewController: UIViewController!
 	
 	/**
 	:name:	sideViewController
 	*/
-	public var sideViewController: UIViewController!
+	public private(set) var sideViewController: UIViewController!
 	
 	/**
 	:name:	sideViewControllerWidth
@@ -211,7 +211,7 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 		self.mainViewController = mainViewController
 		self.sideViewController = sideViewController
 		prepareView()
-		prepareMainView()
+		prepareMainViewController()
 		prepareSideView()
 	}
 	
@@ -227,6 +227,27 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 		sideViewController.view.frame.size.width = sideView.width
 		sideViewController.view.frame.size.height = sideView.height
 		sideViewController.view.center = CGPointMake(sideView.width / 2, sideView.height / 2)
+	}
+	
+	/**
+	:name:	transitionFromMainViewController
+	*/
+	public func transitionFromMainViewController(toViewController: UIViewController, duration: NSTimeInterval, options: UIViewAnimationOptions, animations: (() -> Void)?, completion: ((Bool) -> Void)?) {
+		mainViewController.willMoveToParentViewController(nil)
+		addChildViewController(toViewController)
+		toViewController.view.frame = view.bounds
+		transitionFromViewController(mainViewController,
+			toViewController: toViewController,
+			duration: duration,
+			options: options,
+			animations: animations,
+			completion: { (result: Bool) in
+			self.mainViewController.removeFromParentViewController()
+			toViewController.didMoveToParentViewController(self)
+			self.mainViewController = toViewController
+			self.userInteractionEnabled = !self.opened
+			completion?(result)
+		})
 	}
 	
 	/**
@@ -335,11 +356,19 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 	}
 	
 	/**
-	:name:	prepareMainView
+	:name:	prepareMainViewController
 	*/
-	internal func prepareMainView() {
+	internal func prepareMainViewController() {
 		prepareViewControllerWithinContainer(mainViewController, container: view)
 		mainViewController.view.frame = view.bounds
+	}
+	
+	/**
+	:name:	prepareSideViewController
+	*/
+	internal func prepareSideViewController() {
+		sideViewController.view.clipsToBounds = true
+		prepareViewControllerWithinContainer(sideViewController, container: sideView)
 	}
 	
 	/**
@@ -356,10 +385,7 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 			self.sideView.zPosition = 1000
 		}
 		
-		sideViewController.view.clipsToBounds = true
-		prepareViewControllerWithinContainer(sideViewController, container: sideView)
-		
-		// gestures
+		prepareSideViewController()
 		prepareGestures()
 	}
 	
@@ -372,7 +398,11 @@ public class SideNavigationViewController: UIViewController, UIGestureRecognizer
 			backdropLayer.hidden = false
 			originalPosition = sideView.position
 			toggleStatusBar(true)
-			
+			if enableShadowDepth {
+				MaterialAnimation.animationDisabled {
+					self.sideView.shadowDepth = self.shadowDepth
+				}
+			}
 			delegate?.sideNavigationViewPanDidBegin?(self, point: sideView.position)
 		case .Changed:
 			let translation: CGPoint = recognizer.translationInView(sideView)

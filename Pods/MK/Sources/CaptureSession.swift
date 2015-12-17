@@ -22,7 +22,18 @@ import AVFoundation
 private var CaptureSessionAdjustingExposureContext: UInt8 = 1
 
 public enum CaptureSessionPreset {
-	case High
+	case PresetPhoto
+	case PresetHigh
+	case PresetMedium
+	case PresetLow
+	case Preset352x288
+	case Preset640x480
+	case Preset1280x720
+	case Preset1920x1080
+	case Preset3840x2160
+	case PresetiFrame960x540
+	case PresetiFrame1280x720
+	case PresetInputPriority
 }
 
 /**
@@ -30,8 +41,34 @@ public enum CaptureSessionPreset {
 */
 public func CaptureSessionPresetToString(preset: CaptureSessionPreset) -> String {
 	switch preset {
-	case .High:
+	case .PresetPhoto:
+		return AVCaptureSessionPresetPhoto
+	case .PresetHigh:
 		return AVCaptureSessionPresetHigh
+	case .PresetMedium:
+		return AVCaptureSessionPresetMedium
+	case .PresetLow:
+		return AVCaptureSessionPresetLow
+	case .Preset352x288:
+		return AVCaptureSessionPreset352x288
+	case .Preset640x480:
+		return AVCaptureSessionPreset640x480
+	case .Preset1280x720:
+		return AVCaptureSessionPreset1280x720
+	case .Preset1920x1080:
+		return AVCaptureSessionPreset1920x1080
+	case .Preset3840x2160:
+		if #available(iOS 9.0, *) {
+			return AVCaptureSessionPreset3840x2160
+		} else {
+			return AVCaptureSessionPresetHigh
+		}
+	case .PresetiFrame960x540:
+		return AVCaptureSessionPresetiFrame960x540
+	case .PresetiFrame1280x720:
+		return AVCaptureSessionPresetiFrame1280x720
+	case .PresetInputPriority:
+		return AVCaptureSessionPresetInputPriority
 	}
 }
 
@@ -41,14 +78,54 @@ public protocol CaptureSessionDelegate {
 	:name:	captureSessionFailedWithError
 	*/
 	optional func captureSessionFailedWithError(capture: CaptureSession, error: NSError)
+	
+	/**
+	:name:	captureSessionDidSwitchCameras
+	*/
+	optional func captureSessionDidSwitchCameras(capture: CaptureSession, position: AVCaptureDevicePosition)
+	
+	/**
+	:name:	captureSessionWillSwitchCameras
+	*/
+	optional func captureSessionWillSwitchCameras(capture: CaptureSession, position: AVCaptureDevicePosition)
+	
+	/**
+	:name:	captureStillImageAsynchronously
+	*/
+	optional func captureStillImageAsynchronously(capture: CaptureSession, image: UIImage)
+	
+	/**
+	:name:	captureStillImageAsynchronouslyFailedWithError
+	*/
+	optional func captureStillImageAsynchronouslyFailedWithError(capture: CaptureSession, error: NSError)
+	
+	/**
+	:name:	captureCreateMovieFileFailedWithError
+	*/
+	optional func captureCreateMovieFileFailedWithError(capture: CaptureSession, error: NSError)
+	
+	/**
+	:name:	captureMovieFailedWithError
+	*/
+	optional func captureMovieFailedWithError(capture: CaptureSession, error: NSError)
+	
+	/**
+	:name:	captureDidStartRecordingToOutputFileAtURL
+	*/
+	optional func captureDidStartRecordingToOutputFileAtURL(capture: CaptureSession, captureOutput: AVCaptureFileOutput, fileURL: NSURL, fromConnections connections: [AnyObject])
+	
+	/**
+	:name:	captureDidFinishRecordingToOutputFileAtURL
+	*/
+	optional func captureDidFinishRecordingToOutputFileAtURL(capture: CaptureSession, captureOutput: AVCaptureFileOutput, outputFileURL: NSURL, fromConnections connections: [AnyObject], error: NSError!)
 }
 
 @objc(CaptureSession)
-public class CaptureSession : NSObject {
+public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 	/**
-	:name:	videoQueue
+	:name:	sessionQueue
 	*/
-	private lazy var videoQueue: dispatch_queue_t = dispatch_queue_create("io.materialkit.CaptureSession", nil)
+	private lazy var sessionQueue: dispatch_queue_t = dispatch_queue_create("io.materialkit.CaptureSession", DISPATCH_QUEUE_SERIAL)
 	
 	/**
 	:name:	activeVideoInput
@@ -71,6 +148,11 @@ public class CaptureSession : NSObject {
 	private lazy var movieOutput: AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
 	
 	/**
+	:name:	movieOutputURL
+	*/
+	private var movieOutputURL: NSURL?
+	
+	/**
 	:name: session
 	*/
 	internal lazy var session: AVCaptureSession = AVCaptureSession()
@@ -81,19 +163,22 @@ public class CaptureSession : NSObject {
 	public private(set) lazy var isRunning: Bool = false
 	
 	/**
+	:name:	isRecording
+	*/
+	public private(set) lazy var isRecording: Bool = false
+	
+	/**
+	:name:	recordedDuration
+	*/
+	public var recordedDuration: CMTime {
+		return movieOutput.recordedDuration
+	}
+	
+	/**
 	:name:	activeCamera
 	*/
 	public var activeCamera: AVCaptureDevice? {
 		return activeVideoInput?.device
-	}
-	
-	/**
-	:name:	init
-	*/
-	public override init() {
-		sessionPreset = .High
-		super.init()
-		prepareSession()
 	}
 	
 	/**
@@ -129,14 +214,35 @@ public class CaptureSession : NSObject {
 	:name:	caneraSupportsTapToFocus
 	*/
 	public var cameraSupportsTapToFocus: Bool {
-		return true == activeCamera?.focusPointOfInterestSupported
+		return nil == activeCamera ? false : activeCamera!.focusPointOfInterestSupported
 	}
 	
 	/**
 	:name:	cameraSupportsTapToExpose
 	*/
 	public var cameraSupportsTapToExpose: Bool {
-		return true == activeCamera?.exposurePointOfInterestSupported
+		return nil == activeCamera ? false : activeCamera!.exposurePointOfInterestSupported
+	}
+	
+	/**
+	:name:	cameraHasFlash
+	*/
+	public var cameraHasFlash: Bool {
+		return nil == activeCamera ? false : activeCamera!.hasFlash
+	}
+	
+	/**
+	:name:	cameraHasTorch
+	*/
+	public var cameraHasTorch: Bool {
+		return nil == activeCamera ? false : activeCamera!.hasTorch
+	}
+	
+	/**
+	:name:	cameraPosition
+	*/
+	public var cameraPosition: AVCaptureDevicePosition? {
+		return activeCamera?.position
 	}
 	
 	/**
@@ -152,13 +258,67 @@ public class CaptureSession : NSObject {
 				do {
 					let device: AVCaptureDevice = activeCamera!
 					try device.lockForConfiguration()
-					device.focusMode = focusMode
+					device.focusMode = value
 					device.unlockForConfiguration()
 				} catch let e as NSError {
 					error = e
 				}
 			} else {
 				error = NSError(domain: "[MaterialKit Error: Unsupported focusMode.]", code: 0, userInfo: nil)
+			}
+			if let e: NSError = error {
+				delegate?.captureSessionFailedWithError?(self, error: e)
+			}
+		}
+	}
+	
+	/**
+	:name:	flashMode
+	*/
+	public var flashMode: AVCaptureFlashMode {
+		get {
+			return activeCamera!.flashMode
+		}
+		set(value) {
+			var error: NSError?
+			if isFlashModeSupported(flashMode) {
+				do {
+					let device: AVCaptureDevice = activeCamera!
+					try device.lockForConfiguration()
+					device.flashMode = value
+					device.unlockForConfiguration()
+				} catch let e as NSError {
+					error = e
+				}
+			} else {
+				error = NSError(domain: "[MaterialKit Error: Unsupported flashMode.]", code: 0, userInfo: nil)
+			}
+			if let e: NSError = error {
+				delegate?.captureSessionFailedWithError?(self, error: e)
+			}
+		}
+	}
+	
+	/**
+	:name:	torchMode
+	*/
+	public var torchMode: AVCaptureTorchMode {
+		get {
+			return activeCamera!.torchMode
+		}
+		set(value) {
+			var error: NSError?
+			if isTorchModeSupported(torchMode) {
+				do {
+					let device: AVCaptureDevice = activeCamera!
+					try device.lockForConfiguration()
+					device.torchMode = value
+					device.unlockForConfiguration()
+				} catch let e as NSError {
+					error = e
+				}
+			} else {
+				error = NSError(domain: "[MaterialKit Error: Unsupported torchMode.]", code: 0, userInfo: nil)
 			}
 			if let e: NSError = error {
 				delegate?.captureSessionFailedWithError?(self, error: e)
@@ -176,16 +336,43 @@ public class CaptureSession : NSObject {
 	}
 	
 	/**
+	:name:	sessionPreset
+	*/
+	public var currentVideoOrientation: AVCaptureVideoOrientation {
+		var orientation: AVCaptureVideoOrientation
+		switch UIDevice.currentDevice().orientation {
+		case .Portrait:
+			orientation = .Portrait
+		case .LandscapeRight:
+			orientation = .LandscapeLeft
+		case .PortraitUpsideDown:
+			orientation = .PortraitUpsideDown
+		default:
+			orientation = .LandscapeRight
+		}
+		return orientation
+	}
+	
+	/**
 	:name:	delegate
 	*/
 	public weak var delegate: CaptureSessionDelegate?
+	
+	/**
+	:name:	init
+	*/
+	public override init() {
+		sessionPreset = .PresetHigh
+		super.init()
+		prepareSession()
+	}
 	
 	/**
 	:name:	startSession
 	*/
 	public func startSession() {
 		if !isRunning {
-			dispatch_async(videoQueue) {
+			dispatch_async(sessionQueue) {
 				self.session.startRunning()
 			}
 		}
@@ -196,7 +383,7 @@ public class CaptureSession : NSObject {
 	*/
 	public func stopSession() {
 		if isRunning {
-			dispatch_async(videoQueue) {
+			dispatch_async(sessionQueue) {
 				self.session.stopRunning()
 			}
 		}
@@ -207,8 +394,9 @@ public class CaptureSession : NSObject {
 	*/
 	public func switchCameras() {
 		if canSwitchCameras {
-			dispatch_async(videoQueue) {
-				do {
+			do {
+				if let v: AVCaptureDevicePosition = self.cameraPosition {
+					self.delegate?.captureSessionWillSwitchCameras?(self, position: v)
 					let videoInput: AVCaptureDeviceInput? = try AVCaptureDeviceInput(device: self.inactiveCamera!)
 					self.session.beginConfiguration()
 					self.session.removeInput(self.activeVideoInput)
@@ -220,9 +408,10 @@ public class CaptureSession : NSObject {
 						self.session.addInput(self.activeVideoInput)
 					}
 					self.session.commitConfiguration()
-				} catch let e as NSError {
-					self.delegate?.captureSessionFailedWithError?(self, error: e)
+					self.delegate?.captureSessionDidSwitchCameras?(self, position: self.cameraPosition!)
 				}
+			} catch let e as NSError {
+				self.delegate?.captureSessionFailedWithError?(self, error: e)
 			}
 		}
 	}
@@ -231,14 +420,28 @@ public class CaptureSession : NSObject {
 	:name:	isFocusModeSupported
 	*/
 	public func isFocusModeSupported(focusMode: AVCaptureFocusMode) -> Bool {
-		return activeVideoInput!.device.isFocusModeSupported(focusMode)
+		return activeCamera!.isFocusModeSupported(focusMode)
 	}
 	
 	/**
 	:name:	isExposureModeSupported
 	*/
 	public func isExposureModeSupported(exposureMode: AVCaptureExposureMode) -> Bool {
-		return activeVideoInput!.device.isExposureModeSupported(exposureMode)
+		return activeCamera!.isExposureModeSupported(exposureMode)
+	}
+	
+	/**
+	:name:	isFlashModeSupported
+	*/
+	public func isFlashModeSupported(flashMode: AVCaptureFlashMode) -> Bool {
+		return activeCamera!.isFlashModeSupported(flashMode)
+	}
+	
+	/**
+	:name:	isTorchModeSupported
+	*/
+	public func isTorchModeSupported(torchMode: AVCaptureTorchMode) -> Bool {
+		return activeCamera!.isTorchModeSupported(torchMode)
 	}
 	
 	/**
@@ -314,6 +517,104 @@ public class CaptureSession : NSObject {
 	}
 	
 	/**
+	:name:	resetFocusAndExposureModes
+	*/
+	public func resetFocusAndExposureModes() {
+		let device: AVCaptureDevice = activeCamera!
+		let canResetFocus: Bool = device.focusPointOfInterestSupported && device.isFocusModeSupported(.ContinuousAutoFocus)
+		let canResetExposure: Bool = device.exposurePointOfInterestSupported && device.isExposureModeSupported(.ContinuousAutoExposure)
+		let centerPoint: CGPoint = CGPointMake(0.5, 0.5)
+		do {
+			try device.lockForConfiguration()
+			if canResetFocus {
+				device.focusMode = .ContinuousAutoFocus
+				device.focusPointOfInterest = centerPoint
+			}
+			if canResetExposure {
+				device.exposureMode = .ContinuousAutoExposure
+				device.exposurePointOfInterest = centerPoint
+			}
+			device.unlockForConfiguration()
+		} catch let e as NSError {
+			delegate?.captureSessionFailedWithError?(self, error: e)
+		}
+	}
+	
+	/**
+	:name:	captureStillImage
+	*/
+	public func captureStillImage() {
+		dispatch_async(sessionQueue) {
+			if let v: AVCaptureConnection = self.imageOutput.connectionWithMediaType(AVMediaTypeVideo) {
+				v.videoOrientation = self.currentVideoOrientation
+				self.imageOutput.captureStillImageAsynchronouslyFromConnection(v) { (sampleBuffer: CMSampleBuffer!, error: NSError!) -> Void in
+					if nil == error {
+						let data: NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(sampleBuffer)
+						self.delegate?.captureStillImageAsynchronously?(self, image: UIImage(data: data)!)
+					} else {
+						self.delegate?.captureStillImageAsynchronouslyFailedWithError?(self, error: error!)
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	:name:	startRecording
+	*/
+	public func startRecording() {
+		if !isRecording {
+			dispatch_async(sessionQueue) {
+				if let v: AVCaptureConnection = self.movieOutput.connectionWithMediaType(AVMediaTypeVideo) {
+					v.videoOrientation = self.currentVideoOrientation
+					v.preferredVideoStabilizationMode = .Auto
+				}
+				if let v: AVCaptureDevice = self.activeCamera {
+					if v.smoothAutoFocusSupported {
+						do {
+							try v.lockForConfiguration()
+							v.smoothAutoFocusEnabled = true
+							v.unlockForConfiguration()
+						} catch let e as NSError {
+							self.delegate?.captureSessionFailedWithError?(self, error: e)
+						}
+					}
+					
+					self.movieOutputURL = self.uniqueURL()
+					if let v: NSURL = self.movieOutputURL {
+						self.movieOutput.startRecordingToOutputFileURL(v, recordingDelegate: self)
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	:name:	stopRecording
+	*/
+	public func stopRecording() {
+		if isRecording {
+			movieOutput.stopRecording()
+		}
+	}
+	
+	/**
+	:name:	captureOutput
+	*/
+	public func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
+		isRecording = true
+		delegate?.captureDidStartRecordingToOutputFileAtURL?(self, captureOutput: captureOutput, fileURL: fileURL, fromConnections: connections)
+	}
+	
+	/**
+	:name:	captureOutput
+	*/
+	public func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+		isRecording = false
+		delegate?.captureDidFinishRecordingToOutputFileAtURL?(self, captureOutput: captureOutput, outputFileURL: outputFileURL, fromConnections: connections, error: error)
+	}
+	
+	/**
 	:name:	prepareSession
 	*/
 	private func prepareSession() {
@@ -379,6 +680,22 @@ public class CaptureSession : NSObject {
 			if device.position == position {
 				return device
 			}
+		}
+		return nil
+	}
+	
+	/**
+	:name:	uniqueURL
+	*/
+	private func uniqueURL() -> NSURL? {
+		do {
+			let directory: NSURL = try NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateStyle = .FullStyle
+			dateFormatter.timeStyle = .FullStyle
+			return directory.URLByAppendingPathComponent(dateFormatter.stringFromDate(NSDate()) + ".mov")
+		} catch let e as NSError {
+			delegate?.captureCreateMovieFileFailedWithError?(self, error: e)
 		}
 		return nil
 	}
