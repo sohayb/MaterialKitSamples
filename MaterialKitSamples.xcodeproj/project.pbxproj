@@ -23,7 +23,6 @@
 		3F59BBCD1C233DE90019CA47 /* PMaterialLayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */; };
 		3F59BBCE1C233DE90019CA47 /* PMaterialLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */; };
 		3F59BBCF1C233DE90019CA47 /* PMaterialPulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */; };
-		3F59BBD01C233DE90019CA47 /* PMaterialStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */; };
 		3F59BBD11C233DE90019CA47 /* PMaterialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */; };
 		3F59BBD21C233DE90019CA47 /* PNavigationBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */; };
 		3F59BBD31C233DE90019CA47 /* PTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */; };
@@ -58,7 +57,6 @@
 		3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialLayerViewController.swift; sourceTree = "<group>"; };
 		3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialLayoutViewController.swift; sourceTree = "<group>"; };
 		3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialPulseViewController.swift; sourceTree = "<group>"; };
-		3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialStackViewController.swift; sourceTree = "<group>"; };
 		3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMaterialViewController.swift; sourceTree = "<group>"; };
 		3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNavigationBarViewController.swift; sourceTree = "<group>"; };
 		3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTextFieldViewController.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 				3F59BBC11C233DE90019CA47 /* PMaterialLayerViewController.swift */,
 				3F59BBC21C233DE90019CA47 /* PMaterialLayoutViewController.swift */,
 				3F59BBC31C233DE90019CA47 /* PMaterialPulseViewController.swift */,
-				3F59BBC41C233DE90019CA47 /* PMaterialStackViewController.swift */,
 				3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */,
 				3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */,
 				3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */,
@@ -326,7 +323,6 @@
 			files = (
 				3F91A4DE1C1A0AEC00C7A3EB /* ViewController.swift in Sources */,
 				3F59BBCA1C233DE90019CA47 /* ContentKit+UIImage.swift in Sources */,
-				3F59BBD01C233DE90019CA47 /* PMaterialStackViewController.swift in Sources */,
 				3F59BBCC1C233DE90019CA47 /* PMaterialButtonViewController.swift in Sources */,
 				3F59BBB81C233CCC0019CA47 /* MaterialPulseViewController.swift in Sources */,
 				3F59BBC81C233DE90019CA47 /* PCaptureViewController.swift in Sources */,
@@ -498,7 +494,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -511,7 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mobitrip.MaterialKitSamples;
 				PRODUCT_NAME = "$(TARGET_NAME)";

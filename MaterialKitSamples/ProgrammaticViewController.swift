@@ -56,11 +56,6 @@ class ProgrammaticViewController: UIViewController {
         let controller = PMaterialLayerViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    
-    @IBAction func goToMaterialStack(sender: AnyObject) {
-        let controller = PMaterialStackViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
-    }
    
     @IBAction func goToMaterialView(sender: AnyObject) {
         let controller = PMaterialViewController()

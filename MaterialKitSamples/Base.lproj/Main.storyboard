@@ -276,18 +276,6 @@
                                     <action selector="goToCaptureView:" destination="EmR-7t-ydg" eventType="touchUpInside" id="ZiX-bT-8zW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hf-MT-zCR">
-                                <rect key="frame" x="98" y="388" width="124" height="30"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YEY-js-czf"/>
-                                    <constraint firstAttribute="width" constant="124" id="iGh-Ux-Vhx"/>
-                                </constraints>
-                                <state key="normal" title="Material Layout"/>
-                                <connections>
-                                    <action selector="goToMaterialLayout:" destination="EmR-7t-ydg" eventType="touchUpInside" id="PQc-vv-OQ0"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR3-Z8-wQA">
                                 <rect key="frame" x="88" y="350" width="145" height="30"/>
                                 <animations/>
@@ -300,20 +288,20 @@
                                     <action selector="goToMaterialLayer:" destination="EmR-7t-ydg" eventType="touchUpInside" id="AyO-6P-M1u"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdn-gm-zNv">
-                                <rect key="frame" x="91" y="426" width="139" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hf-MT-zCR">
+                                <rect key="frame" x="98" y="388" width="124" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1tF-J9-mkD"/>
-                                    <constraint firstAttribute="width" constant="139" id="B7b-iW-kq2"/>
+                                    <constraint firstAttribute="height" constant="30" id="YEY-js-czf"/>
+                                    <constraint firstAttribute="width" constant="124" id="iGh-Ux-Vhx"/>
                                 </constraints>
-                                <state key="normal" title="Material Stack View"/>
+                                <state key="normal" title="Material Layout"/>
                                 <connections>
-                                    <action selector="goToMaterialStack:" destination="EmR-7t-ydg" eventType="touchUpInside" id="aF3-Rm-Q8D"/>
+                                    <action selector="goToMaterialLayout:" destination="EmR-7t-ydg" eventType="touchUpInside" id="PQc-vv-OQ0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsC-or-sEU">
-                                <rect key="frame" x="91" y="464" width="139" height="30"/>
+                                <rect key="frame" x="91" y="439" width="139" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1oW-nl-PKo"/>
@@ -325,7 +313,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5j-gc-Zde">
-                                <rect key="frame" x="119" y="507" width="83" height="30"/>
+                                <rect key="frame" x="119" y="482" width="83" height="30"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Nmq-aX-0QF"/>
@@ -348,7 +336,6 @@
                             <constraint firstItem="W08-Oi-M1j" firstAttribute="top" secondItem="kaS-vC-ftJ" secondAttribute="bottom" constant="15" id="BFo-KY-Ib7"/>
                             <constraint firstItem="kaS-vC-ftJ" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="Jtb-6q-5sA"/>
                             <constraint firstItem="n5j-gc-Zde" firstAttribute="top" secondItem="gsC-or-sEU" secondAttribute="bottom" constant="13" id="OG0-nR-dWc"/>
-                            <constraint firstItem="pdn-gm-zNv" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="SQE-7U-da3"/>
                             <constraint firstItem="AR3-Z8-wQA" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="Thk-VL-ckm"/>
                             <constraint firstItem="5Hf-MT-zCR" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="Txc-Jx-RfK"/>
                             <constraint firstItem="hiD-GX-xEU" firstAttribute="top" secondItem="mOy-zU-yvs" secondAttribute="bottom" constant="17" id="ama-Ec-vGo"/>
@@ -357,9 +344,8 @@
                             <constraint firstItem="n5j-gc-Zde" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="bm1-Df-kRs"/>
                             <constraint firstItem="kaS-vC-ftJ" firstAttribute="top" secondItem="902-p0-Bq9" secondAttribute="bottom" constant="22" id="gbS-k0-RmQ"/>
                             <constraint firstItem="gsC-or-sEU" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="hHY-0z-sRw"/>
-                            <constraint firstItem="gsC-or-sEU" firstAttribute="top" secondItem="pdn-gm-zNv" secondAttribute="bottom" constant="8" id="mQR-dR-vOc"/>
                             <constraint firstItem="902-p0-Bq9" firstAttribute="centerX" secondItem="73v-dc-gxG" secondAttribute="centerX" id="qfT-zH-5EO"/>
-                            <constraint firstItem="gsC-or-sEU" firstAttribute="top" secondItem="AR3-Z8-wQA" secondAttribute="bottom" constant="84" id="s1f-hC-jbv"/>
+                            <constraint firstItem="gsC-or-sEU" firstAttribute="top" secondItem="5Hf-MT-zCR" secondAttribute="bottom" constant="21" id="tzU-CG-O5z"/>
                             <constraint firstItem="t3p-fZ-Drq" firstAttribute="top" secondItem="EKa-i9-dcy" secondAttribute="bottom" constant="8" id="ugK-HK-AWN"/>
                             <constraint firstItem="5Hf-MT-zCR" firstAttribute="top" secondItem="W08-Oi-M1j" secondAttribute="bottom" constant="52" id="zoC-BC-4vm"/>
                         </constraints>
