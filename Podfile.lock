@@ -1,10 +1,10 @@
 PODS:
-  - MK (1.25.3)
+  - MK (1.25.4)
 
 DEPENDENCIES:
-  - MK (~> 1.25.3)
+  - MK (~> 1.25.4)
 
 SPEC CHECKSUMS:
-  MK: ccb8f896503ed0ff6974043f4ba9164b7d86f65b
+  MK: cf60fdeb8012e6a4cdcbdb89880cac1797d135ac
 
 COCOAPODS: 0.39.0

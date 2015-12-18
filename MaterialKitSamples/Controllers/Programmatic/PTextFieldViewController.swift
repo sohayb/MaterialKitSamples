@@ -19,25 +19,67 @@
 import UIKit
 import MK
 
-class PTextFieldViewController: UIViewController {
-	
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		prepareView()
-		
-		prepareTextField()
-	}
-	
-	private func prepareView() {
-		view.backgroundColor = MaterialColor.white
-	}
-	
-	private func prepareTextField() {
-		let textField: TextField = TextField(frame: CGRectMake(100, 100, 200, 35))
-		textField.placeholder = "Title"
-		textField.textColor = MaterialColor.grey.base
-		textField.titleLabel = UILabel()
-		view.addSubview(textField)
-	}
-	
+class PTextFieldViewController: UIViewController, TextFieldDelegate {
+    private lazy var titleField: TextField = TextField()
+    private lazy var descriptionField: TextField = TextField()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareView()
+        
+        prepareTitleField()
+        prepareDescriptionField()
+    }
+    
+    /**
+     :name:	prepareView
+     */
+    private func prepareView() {
+        view.backgroundColor = MaterialColor.white
+    }
+    
+    /**
+     :name:	prepareTitleField
+     :description:	A preparation helper for titleField.
+     */
+    private func prepareTitleField() {
+        titleField.delegate = self
+        titleField.frame = CGRectMake(57, 100, 300, 24)
+        titleField.placeholder = "Title"
+        titleField.font = RobotoFont.regularWithSize(20)
+        titleField.textColor = MaterialColor.black
+        titleField.titleLabel = UILabel()
+        titleField.titleLabel!.font = RobotoFont.mediumWithSize(12)
+        titleField.titleLabelNormalColor = MaterialColor.grey.lighten1
+        titleField.titleLabelHighlightedColor = MaterialColor.blue.accent3
+        view.addSubview(titleField)
+    }
+    
+    /**
+     :name:	prepareDescriptionField
+     :description:	A preparation helper for descriptionField.
+     */
+    private func prepareDescriptionField() {
+        descriptionField.delegate = self
+        descriptionField.frame = CGRectMake(57, 150, 300, 24)
+        descriptionField.placeholder = "Description"
+        descriptionField.font = RobotoFont.regularWithSize(20)
+        descriptionField.textColor = MaterialColor.black
+        descriptionField.titleLabel = UILabel()
+        descriptionField.titleLabel!.font = RobotoFont.mediumWithSize(12)
+        descriptionField.titleLabelNormalColor = MaterialColor.grey.lighten1
+        descriptionField.titleLabelHighlightedColor = MaterialColor.blue.accent3
+        view.addSubview(descriptionField)
+    }
+    
+    /**
+     :name:	textFieldShouldReturn
+     :description: This is called when the user presses the Return
+     key on the keyboard.
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
 }
