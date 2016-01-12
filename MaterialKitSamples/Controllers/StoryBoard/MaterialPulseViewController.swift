@@ -45,7 +45,7 @@ class MaterialPulseViewController: UIViewController {
     private func prepareGeneralMaterialPulseViewExample() {
         pulseView.image = UIImage(named: "ContentAppIcon")
         pulseView.shape = .Circle
-        pulseView.shadowDepth = .Depth2
+        pulseView.depth = .Depth2
     }
 }
 

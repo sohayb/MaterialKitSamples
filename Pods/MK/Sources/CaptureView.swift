@@ -1,20 +1,32 @@
-//
-// Copyright (C) 2015 CosmicMind, Inc. <http://cosmicmind.io> and other CosmicMind contributors
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program located at the root of the software package
-// in a file called LICENSE.  If not, see <http://www.gnu.org/licenses/>.
-//
+/*
+* Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+*	*	Redistributions of source code must retain the above copyright notice, this
+*		list of conditions and the following disclaimer.
+*
+*	*	Redistributions in binary form must reproduce the above copyright notice,
+*		this list of conditions and the following disclaimer in the documentation
+*		and/or other materials provided with the distribution.
+*
+*	*	Neither the name of MaterialKit nor the names of its
+*		contributors may be used to endorse or promote products derived from
+*		this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 import UIKit
 import AVFoundation
@@ -173,16 +185,16 @@ public class CaptureView : MaterialView, UIGestureRecognizerDelegate {
 	/**
 	:name:	contentInsets
 	*/
-	public var contentInsets: MaterialEdgeInsets = .None {
+	public var contentInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			contentInsetsRef = MaterialEdgeInsetsToValue(contentInsets)
+			contentInset = MaterialEdgeInsetPresetToValue(contentInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	contentInsetsRef
+	:name:	contentInset
 	*/
-	public var contentInsetsRef: UIEdgeInsets = MaterialTheme.captureView.contentInsetsRef {
+	public var contentInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.Square4) {
 		didSet {
 			reloadView()
 		}
@@ -287,16 +299,16 @@ public class CaptureView : MaterialView, UIGestureRecognizerDelegate {
 		previewView.frame = bounds
 		
 		if let v: UIButton = cameraButton {
-			v.frame.origin.y = bounds.height - contentInsetsRef.bottom - v.bounds.height
-			v.frame.origin.x = contentInsetsRef.left
+			v.frame.origin.y = bounds.height - contentInset.bottom - v.bounds.height
+			v.frame.origin.x = contentInset.left
 		}
 		if let v: UIButton = captureButton {
-			v.frame.origin.y = bounds.height - contentInsetsRef.bottom - v.bounds.height
+			v.frame.origin.y = bounds.height - contentInset.bottom - v.bounds.height
 			v.frame.origin.x = (bounds.width - v.bounds.width) / 2
 		}
 		if let v: UIButton = videoButton {
-			v.frame.origin.y = bounds.height - contentInsetsRef.bottom - v.bounds.height
-			v.frame.origin.x = bounds.width - v.bounds.width - contentInsetsRef.right
+			v.frame.origin.y = bounds.height - contentInset.bottom - v.bounds.height
+			v.frame.origin.x = bounds.width - v.bounds.width - contentInset.right
 		}
 		if let v: AVCaptureConnection = (previewView.layer as! AVCaptureVideoPreviewLayer).connection {
 			v.videoOrientation = captureSession.currentVideoOrientation
@@ -308,19 +320,7 @@ public class CaptureView : MaterialView, UIGestureRecognizerDelegate {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		userInteractionEnabled = MaterialTheme.captureView.userInteractionEnabled
-		backgroundColor = MaterialTheme.captureView.backgroundColor
-		
-		contentsRect = MaterialTheme.captureView.contentsRect
-		contentsCenter = MaterialTheme.captureView.contentsCenter
-		contentsScale = MaterialTheme.captureView.contentsScale
-		contentsGravity = MaterialTheme.captureView.contentsGravity
-		shadowDepth = MaterialTheme.captureView.shadowDepth
-		shadowColor = MaterialTheme.captureView.shadowColor
-		zPosition = MaterialTheme.captureView.zPosition
-		borderWidth = MaterialTheme.captureView.borderWidth
-		borderColor = MaterialTheme.captureView.bordercolor
-		
+		backgroundColor = MaterialColor.black
 		preparePreviewView()
 	}
 	

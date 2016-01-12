@@ -30,40 +30,56 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
-	/**
-	:name: path
-	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
-		}
-		return animation
-	}
+public class MaterialTableViewCell: UITableViewCell {
+    
+    public lazy var pulseView: MaterialPulseView = MaterialPulseView()
+    
+    /**
+     :name:	initWithCoder:
+     */
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    /**
+     :name:	initWithStyle:
+     */
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        prepare()
+        preparePulseView()
+    }
+    
+    /**
+     :name:	layoutSubviews
+     */
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutPulseView()
+    }
+    
+    /**
+     :name:	prepare
+     */
+    public func prepare() {
+        selectionStyle = .None
+        imageView?.userInteractionEnabled = false
+        textLabel?.userInteractionEnabled = false
+        detailTextLabel?.userInteractionEnabled = false
+    }
+    
+    /**
+     :name:	preparePulseView
+     */
+    public func preparePulseView() {
+        pulseView.pulseColor = MaterialColor.red.darken1.colorWithAlphaComponent(0.2)
+        contentView.addSubview(pulseView)
+    }
+    
+    /**
+     :name:	layoutPulseView
+     */
+    public func layoutPulseView() {
+        pulseView.frame = contentView.bounds
+    }
 }

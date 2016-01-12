@@ -68,4 +68,8 @@ class ProgrammaticViewController: UIViewController {
         self.navigationController?.pushViewController(controller, animated: true)
     }
     
+    @IBAction func goToTextView(sender: AnyObject) {
+        let controller = PTextViewViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }

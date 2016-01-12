@@ -30,40 +30,38 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
+public extension UIImage {
 	/**
-	:name: path
+		:name:	internalResize
 	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
+	private func internalResize(var toWidth w: CGFloat = 0, var toHeight h: CGFloat = 0) -> UIImage? {
+		if 0 < w {
+			h = height * w / width
+		} else if 0 < h {
+			w = width * h / height
 		}
-		return animation
+		
+		let g: UIImage?
+		let t: CGRect = CGRectMake(0, 0, w, h)
+		UIGraphicsBeginImageContext(t.size)
+		drawInRect(t, blendMode: .Normal, alpha: 1)
+		g = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return g
+	}
+	
+	/**
+		:name:	resize
+	*/
+	public func resize(toWidth w: CGFloat) -> UIImage? {
+		return internalResize(toWidth: w)
+	}
+	
+	/**
+		:name:	resize
+	*/
+	public func resize(toHeight h: CGFloat) -> UIImage? {
+		return internalResize(toHeight: h)
 	}
 }

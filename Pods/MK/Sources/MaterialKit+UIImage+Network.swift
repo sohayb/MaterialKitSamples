@@ -30,40 +30,18 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
+public extension UIImage {
 	/**
-	:name: path
+		:name:	contentsOfURL
 	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
+	public class func contentsOfURL(URL: NSURL, completion: ((image: UIImage?, error: NSError?) -> Void)) {
+		let request: NSURLRequest = NSURLRequest(URL: URL)
+		NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+			if let v: NSError = error {
+				completion(image: nil, error: v)
+			} else if let v: NSData = data {
+				completion(image: UIImage(data: v), error: nil)
+			}
 		}
-		return animation
 	}
 }

@@ -30,40 +30,46 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
+public extension String {
 	/**
-	:name: path
+	:name:	lines
 	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
-		}
-		return animation
+	public var lines: Array<String> {
+		return componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+	}
+	
+	/**
+	:name:	firstLine
+	*/
+	public var firstLine: String? {
+		return lines.first?.trim()
+	}
+	
+	/**
+	:name:	lastLine
+	*/
+	public var lastLine: String? {
+		return lines.last?.trim()
+	}
+	
+	/**
+	:name:	replaceNewLineCharater
+	*/
+	public func replaceNewLineCharater(replace: String = " ") -> String {
+		return componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).joinWithSeparator(replace).trim()
+	}
+	
+	/**
+	:name:	replacePunctuationCharacters
+	*/
+	public func replacePunctuationCharacters(replace: String = "") -> String {
+		return componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet()).joinWithSeparator(replace).trim()
+	}
+	
+	/**
+	:name:	trim
+	*/
+	public func trim() -> String {
+		return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
 	}
 }

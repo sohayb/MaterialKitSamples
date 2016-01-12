@@ -30,40 +30,14 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
+public extension UIFont {
 	/**
-	:name: path
+	:name:	stringSize
 	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
-		}
-		return animation
+	public func stringSize(string: String, constrainedToWidth width: Double) -> CGSize {
+		return string.boundingRectWithSize(CGSize(width: width, height: DBL_MAX),
+			options: NSStringDrawingOptions.UsesLineFragmentOrigin,
+			attributes: [NSFontAttributeName: self],
+			context: nil).size
 	}
 }

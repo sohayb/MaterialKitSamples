@@ -1,20 +1,32 @@
-//
-// Copyright (C) 2015 CosmicMind, Inc. <http://cosmicmind.io> and other CosmicMind contributors
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program located at the root of the software package
-// in a file called LICENSE.  If not, see <http://www.gnu.org/licenses/>.
-//
+/*
+* Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+*	*	Redistributions of source code must retain the above copyright notice, this
+*		list of conditions and the following disclaimer.
+*
+*	*	Redistributions in binary form must reproduce the above copyright notice,
+*		this list of conditions and the following disclaimer in the documentation
+*		and/or other materials provided with the distribution.
+*
+*	*	Neither the name of MaterialKit nor the names of its
+*		contributors may be used to endorse or promote products derived from
+*		this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 import UIKit
 
@@ -36,7 +48,7 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	divider
 	*/
-	public var divider: Bool = MaterialTheme.imageCardView.divider {
+	public var divider: Bool = true {
 		didSet {
 			reloadView()
 		}
@@ -45,16 +57,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	dividerInsets
 	*/
-	public var dividerInsets: MaterialEdgeInsets = .None {
+	public var dividerInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			dividerInsetsRef = MaterialEdgeInsetsToValue(dividerInsets)
+			dividerInset = MaterialEdgeInsetPresetToValue(dividerInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	dividerInsetsRef
+	:name:	dividerInset
 	*/
-	public var dividerInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.dividerInsetsRef {
+	public var dividerInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0) {
 		didSet {
 			reloadView()
 		}
@@ -153,16 +165,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	contentInsets
 	*/
-	public var contentInsets: MaterialEdgeInsets = .None {
+	public var contentInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			contentInsetsRef = MaterialEdgeInsetsToValue(contentInsets)
+			contentInset = MaterialEdgeInsetPresetToValue(contentInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	contentInsetsRef
+	:name:	contentInset
 	*/
-	public var contentInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.contentInsetsRef {
+	public var contentInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.Square2) {
 		didSet {
 			reloadView()
 		}
@@ -171,16 +183,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	titleLabelInsets
 	*/
-	public var titleLabelInsets: MaterialEdgeInsets = .None {
+	public var titleLabelInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			titleLabelInsetsRef = MaterialEdgeInsetsToValue(titleLabelInsets)
+			titleLabelInset = MaterialEdgeInsetPresetToValue(titleLabelInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	titleLabelInsetsRef
+	:name:	titleLabelInset
 	*/
-	public var titleLabelInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.titleLabelInsetsRef {
+	public var titleLabelInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.Square2) {
 		didSet {
 			reloadView()
 		}
@@ -199,16 +211,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	detailLabelInsets
 	*/
-	public var detailLabelInsets: MaterialEdgeInsets = .None {
+	public var detailLabelInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			detailLabelInsetsRef = MaterialEdgeInsetsToValue(detailLabelInsets)
+			detailLabelInset = MaterialEdgeInsetPresetToValue(detailLabelInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	detailLabelInsetsRef
+	:name:	detailLabelInset
 	*/
-	public var detailLabelInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.detailLabelInsetsRef {
+	public var detailLabelInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.Square2) {
 		didSet {
 			reloadView()
 		}
@@ -227,16 +239,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	leftButtonsInsets
 	*/
-	public var leftButtonsInsets: MaterialEdgeInsets = .None {
+	public var leftButtonsInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			leftButtonsInsetsRef = MaterialEdgeInsetsToValue(leftButtonsInsets)
+			leftButtonsInset = MaterialEdgeInsetPresetToValue(leftButtonsInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	leftButtonsInsetsRef
+	:name:	leftButtonsInset
 	*/
-	public var leftButtonsInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.leftButtonsInsetsRef {
+	public var leftButtonsInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.None) {
 		didSet {
 			reloadView()
 		}
@@ -259,16 +271,16 @@ public class ImageCardView : MaterialPulseView {
 	/**
 	:name:	rightButtonsInsets
 	*/
-	public var rightButtonsInsets: MaterialEdgeInsets = .None {
+	public var rightButtonsInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			rightButtonsInsetsRef = MaterialEdgeInsetsToValue(rightButtonsInsets)
+			rightButtonsInset = MaterialEdgeInsetPresetToValue(rightButtonsInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	rightButtonsInsetsRef
+	:name:	rightButtonsInset
 	*/
-	public var rightButtonsInsetsRef: UIEdgeInsets = MaterialTheme.imageCardView.rightButtonsInsetsRef {
+	public var rightButtonsInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.None) {
 		didSet {
 			reloadView()
 		}
@@ -328,11 +340,11 @@ public class ImageCardView : MaterialPulseView {
 			
 			// divider
 			if divider {
-				var y: CGFloat = contentInsetsRef.bottom + dividerInsetsRef.bottom
+				var y: CGFloat = contentInset.bottom + dividerInset.bottom
 				if 0 < leftButtons?.count {
-					y += leftButtonsInsetsRef.top + leftButtonsInsetsRef.bottom + leftButtons![0].frame.height
+					y += leftButtonsInset.top + leftButtonsInset.bottom + leftButtons![0].frame.height
 				} else if 0 < rightButtons?.count {
-					y += rightButtonsInsetsRef.top + rightButtonsInsetsRef.bottom + rightButtons![0].frame.height
+					y += rightButtonsInset.top + rightButtonsInset.bottom + rightButtons![0].frame.height
 				}
 				if 0 < y {
 					prepareDivider(bounds.height - y - 0.5, width: bounds.width)
@@ -363,10 +375,10 @@ public class ImageCardView : MaterialPulseView {
 			metrics["insetTop"] = imageLayer!.frame.height
 		} else if nil != titleLabel {
 			verticalFormat += "-(insetTop)"
-			metrics["insetTop"] = contentInsetsRef.top + titleLabelInsetsRef.top
+			metrics["insetTop"] = contentInset.top + titleLabelInset.top
 		} else if nil != detailLabel {
 			verticalFormat += "-(insetTop)"
-			metrics["insetTop"] = contentInsetsRef.top + detailLabelInsetsRef.top
+			metrics["insetTop"] = contentInset.top + detailLabelInset.top
 		}
 		
 		// title
@@ -377,9 +389,9 @@ public class ImageCardView : MaterialPulseView {
 				verticalFormat += "-[titleLabel]"
 				views["titleLabel"] = v
 			} else {
-				MaterialLayout.alignFromTop(self, child: v, top: contentInsetsRef.top + titleLabelInsetsRef.top)
+				MaterialLayout.alignFromTop(self, child: v, top: contentInset.top + titleLabelInset.top)
 			}
-			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInsetsRef.left + titleLabelInsetsRef.left, right: contentInsetsRef.right + titleLabelInsetsRef.right)
+			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + titleLabelInset.left, right: contentInset.right + titleLabelInset.right)
 		}
 		
 		// detail
@@ -388,15 +400,15 @@ public class ImageCardView : MaterialPulseView {
 			
 			if nil == imageLayer?.contents && nil != titleLabel {
 				verticalFormat += "-(insetB)"
-				metrics["insetB"] = titleLabelInsetsRef.bottom + detailLabelInsetsRef.top
+				metrics["insetB"] = titleLabelInset.bottom + detailLabelInset.top
 			} else {
-				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + detailLabelInsetsRef.top
+				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + detailLabelInset.top
 			}
 			
 			verticalFormat += "-[detailLabel]"
 			views["detailLabel"] = v
 			
-			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInsetsRef.left + detailLabelInsetsRef.left, right: contentInsetsRef.right + detailLabelInsetsRef.right)
+			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + detailLabelInset.left, right: contentInset.right + detailLabelInset.right)
 		}
 		
 		// leftButtons
@@ -419,10 +431,10 @@ public class ImageCardView : MaterialPulseView {
 					h += "[\(k)]"
 					
 					addSubview(b)
-					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInsetsRef.bottom + leftButtonsInsetsRef.bottom)
+					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + leftButtonsInset.bottom)
 				}
 				
-				addConstraints(MaterialLayout.constraint(h, options: [], metrics: ["left" : contentInsetsRef.left + leftButtonsInsetsRef.left, "left_right" : leftButtonsInsetsRef.left + leftButtonsInsetsRef.right], views: d))
+				addConstraints(MaterialLayout.constraint(h, options: [], metrics: ["left" : contentInset.left + leftButtonsInset.left, "left_right" : leftButtonsInset.left + leftButtonsInset.right], views: d))
 			}
 		}
 		
@@ -447,10 +459,10 @@ public class ImageCardView : MaterialPulseView {
 					}
 					
 					addSubview(b)
-					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInsetsRef.bottom + rightButtonsInsetsRef.bottom)
+					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + rightButtonsInset.bottom)
 				}
 				
-				addConstraints(MaterialLayout.constraint(h + "|", options: [], metrics: ["right" : contentInsetsRef.right + rightButtonsInsetsRef.right, "right_left" : rightButtonsInsetsRef.right + rightButtonsInsetsRef.left], views: d))
+				addConstraints(MaterialLayout.constraint(h + "|", options: [], metrics: ["right" : contentInset.right + rightButtonsInset.right, "right_left" : rightButtonsInset.right + rightButtonsInset.left], views: d))
 			}
 		}
 		
@@ -458,59 +470,59 @@ public class ImageCardView : MaterialPulseView {
 			if 0 < leftButtons?.count {
 				verticalFormat += "-(insetC)-[button]"
 				views["button"] = leftButtons![0]
-				metrics["insetC"] = leftButtonsInsetsRef.top
-				metrics["insetBottom"] = contentInsetsRef.bottom + leftButtonsInsetsRef.bottom
+				metrics["insetC"] = leftButtonsInset.top
+				metrics["insetBottom"] = contentInset.bottom + leftButtonsInset.bottom
 			} else if 0 < rightButtons?.count {
 				verticalFormat += "-(insetC)-[button]"
 				views["button"] = rightButtons![0]
-				metrics["insetC"] = rightButtonsInsetsRef.top
-				metrics["insetBottom"] = contentInsetsRef.bottom + rightButtonsInsetsRef.bottom
+				metrics["insetC"] = rightButtonsInset.top
+				metrics["insetBottom"] = contentInset.bottom + rightButtonsInset.bottom
 			}
 			
 			if nil != detailLabel {
 				if nil == metrics["insetC"] {
-					metrics["insetBottom"] = contentInsetsRef.bottom + detailLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+					metrics["insetBottom"] = contentInset.bottom + detailLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 				} else {
-					metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+					metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 				}
 			} else if nil != titleLabel {
 				if nil == metrics["insetC"] {
-					metrics["insetBottom"] = contentInsetsRef.bottom + titleLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+					metrics["insetBottom"] = contentInset.bottom + titleLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 				} else {
-					metrics["insetC"] = (metrics["insetC"] as! CGFloat) + titleLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+					metrics["insetC"] = (metrics["insetC"] as! CGFloat) + titleLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 				}
 			} else if nil != metrics["insetC"] {
-				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + contentInsetsRef.top + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + contentInset.top + (divider ? dividerInset.top + dividerInset.bottom : 0)
 			}
 		} else if nil != detailLabel {
 			if 0 < leftButtons?.count {
 				verticalFormat += "-(insetC)-[button]"
 				views["button"] = leftButtons![0]
-				metrics["insetC"] = leftButtonsInsetsRef.top
-				metrics["insetBottom"] = contentInsetsRef.bottom + leftButtonsInsetsRef.bottom
+				metrics["insetC"] = leftButtonsInset.top
+				metrics["insetBottom"] = contentInset.bottom + leftButtonsInset.bottom
 			} else if 0 < rightButtons?.count {
 				verticalFormat += "-(insetC)-[button]"
 				views["button"] = rightButtons![0]
-				metrics["insetC"] = rightButtonsInsetsRef.top
-				metrics["insetBottom"] = contentInsetsRef.bottom + rightButtonsInsetsRef.bottom
+				metrics["insetC"] = rightButtonsInset.top
+				metrics["insetBottom"] = contentInset.bottom + rightButtonsInset.bottom
 			}
 			
 			if nil == metrics["insetC"] {
-				metrics["insetBottom"] = contentInsetsRef.bottom + detailLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+				metrics["insetBottom"] = contentInset.bottom + detailLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 			} else {
-				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInsetsRef.bottom + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
+				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInset.bottom + (divider ? dividerInset.top + dividerInset.bottom : 0)
 			}
 		} else {
 			if 0 < leftButtons?.count {
 				verticalFormat += "-[button]"
 				views["button"] = leftButtons![0]
-				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + contentInsetsRef.top + leftButtonsInsetsRef.top + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
-				metrics["insetBottom"] = contentInsetsRef.bottom + leftButtonsInsetsRef.bottom
+				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + contentInset.top + leftButtonsInset.top + (divider ? dividerInset.top + dividerInset.bottom : 0)
+				metrics["insetBottom"] = contentInset.bottom + leftButtonsInset.bottom
 			} else if 0 < rightButtons?.count {
 				verticalFormat += "-[button]"
 				views["button"] = rightButtons![0]
-				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + contentInsetsRef.top + rightButtonsInsetsRef.top + (divider ? dividerInsetsRef.top + dividerInsetsRef.bottom : 0)
-				metrics["insetBottom"] = contentInsetsRef.bottom + rightButtonsInsetsRef.bottom
+				metrics["insetTop"] = (metrics["insetTop"] as! CGFloat) + contentInset.top + rightButtonsInset.top + (divider ? dividerInset.top + dividerInset.bottom : 0)
+				metrics["insetBottom"] = contentInset.bottom + rightButtonsInset.bottom
 			} else {
 				if translatesAutoresizingMaskIntoConstraints {
 					addConstraints(MaterialLayout.constraint("V:[view(height)]", options: [], metrics: ["height": imageLayer!.frame.height], views: ["view": self]))
@@ -531,20 +543,9 @@ public class ImageCardView : MaterialPulseView {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		userInteractionEnabled = MaterialTheme.imageCardView.userInteractionEnabled
-		backgroundColor = MaterialTheme.imageCardView.backgroundColor
-		pulseColor = MaterialTheme.imageCardView.pulseColor
-		
-		contentsRect = MaterialTheme.imageCardView.contentsRect
-		contentsCenter = MaterialTheme.imageCardView.contentsCenter
-		contentsScale = MaterialTheme.imageCardView.contentsScale
-		contentsGravity = MaterialTheme.imageCardView.contentsGravity
-		shadowDepth = MaterialTheme.imageCardView.shadowDepth
-		shadowColor = MaterialTheme.imageCardView.shadowColor
-		zPosition = MaterialTheme.imageCardView.zPosition
-		borderWidth = MaterialTheme.imageCardView.borderWidth
-		borderColor = MaterialTheme.imageCardView.bordercolor
-		dividerColor = MaterialTheme.imageCardView.dividerColor
+		pulseColor = MaterialColor.blueGrey.lighten4
+		depth = .Depth2
+		dividerColor = MaterialColor.blueGrey.lighten5
 	}
 	
 	/**
@@ -569,7 +570,7 @@ public class ImageCardView : MaterialPulseView {
 			layer.addSublayer(dividerLayer!)
 		}
 		dividerLayer?.backgroundColor = dividerColor?.CGColor
-		dividerLayer?.frame = CGRectMake(dividerInsetsRef.left, y, width - dividerInsetsRef.left - dividerInsetsRef.right, 1)
+		dividerLayer?.frame = CGRectMake(dividerInset.left, y, width - dividerInset.left - dividerInset.right, 1)
 	}
 	
 	/**

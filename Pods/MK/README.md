@@ -2,11 +2,46 @@
 
 # Welcome to MaterialKit
 
-MaterialKit is built as an animation and graphics framework. A major goal in the design of MaterialKit is to allow the creativity of others to easily be expressed. The following README is written to get you started, and is by no means a complete tutorial on all that is possible. Examples may be found in the Examples directory that go beyond the README documentation.
+MaterialKit is a graphics and animation framework based on Google's Material Design. A major goal in the design of MaterialKit is to allow the creativity of others to easily be expressed. The following README is written to get you started, and is by no means a complete tutorial on all that is possible. Additional examples may be found in the Examples directory that go beyond the README documentation.
 
-### CocoaPods Support
+## How To Get Started
 
-MaterialKit is on CocoaPods under the name [MK](https://cocoapods.org/?q=MK).
+- [Download MaterialKit](https://github.com/CosmicMind/MaterialKit/archive/master.zip).
+- Explore the examples in the Examples directory.
+
+## Communication
+
+- If you **need help**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/materialkit). (Tag 'materialkit')
+- If you'd like to **ask a general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/materialkit).
+- If you **found a bug**, _and can provide steps to reliably reproduce it_, open an issue.
+- If you **have a feature request**, open an issue.
+- If you **want to contribute**, submit a pull request.
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+> CocoaPods 0.39.0+ is required to build MaterialKit 1.0.0+.
+
+To integrate MaterialKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'MK', '~> 1.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ### Carthage Support
 
@@ -26,21 +61,26 @@ github "CosmicMind/MaterialKit"
 
 Run carthage to build the framework and drag the built MaterialKit.framework into your Xcode project.
 
-### Table of Contents  
+### Changelog
 
-* [MaterialColor](#materialcolor)
+The MaterialKit framework is a fast growing project and will encounter changes throughout its development. It is recommended that the [Changelog](https://github.com/CosmicMind/MaterialKit/wiki/Changelog) be reviewed prior to updating versions.
+
+### A Quick Tour  
+
+* [SideNavigationViewController](#sidenavigationviewcontroller)
 * [TextField](#textfield)
+* [TextView](#textview)
 * [MaterialLayer](#materiallayer)
 * [MaterialView](#materialview)
 * [MaterialPulseView](#materialpulseview)
 * [FlatButton](#flatbutton)
 * [RaisedButton](#raisedbutton)
 * [FabButton](#fabbutton)
+* [NavigationBarView](#navigationbarview)
 * [CardView](#cardview)
 * [ImageCardView](#imagecardview)
-* [NavigationBarView](#navigationbarview)
-* [SideNavigationViewController](#sidenavigationviewcontroller)
 * [CaptureView](#captureview)
+* [MaterialColor](#materialcolor)
 
 ### Upcoming
 
@@ -48,45 +88,57 @@ Run carthage to build the framework and drag the built MaterialKit.framework int
 * SearchBarViewController
 * TabView
 * TabViewController
-* TextView
 * Scrolling Techniques
+* Dialogs
+* Snackbar
+* ProgressBar (circular and horizontal)
+* DatePicker
+* TimePicker
 * More Examples
 
-<a name="materialcolor"/>
-### MaterialColor
+<a name="sidenavigationviewcontroller"></a>
+### SideNavigationViewController
 
-Explore a complete range of Material Design colors using MaterialColor. Below is an example of setting a button's background color property.
+The SideNavigationViewController is an app wide navigation pattern. It generally provides overall app navigation with other useful items. Below is an example of the SideNavigationViewController and in the Examples Programmatic directory, an example project is available using this component.
 
-![MaterialKitMaterialColorPalette](http://www.materialkit.io/MK/MaterialKitMaterialColorPalette.png)
+![MaterialKitSideNavigationViewController](http://www.materialkit.io/MK/MaterialKitSideNavigationViewController.gif)
 
-```swift
-let button: FabButton = FabButton()
-button.backgroundColor = MaterialColor.blue.darken1
-```
-
-<a name="textfield"/>
+<a name="textfield"></a>
 ### TextField
 
-A TextField is an excellent way to improve UX. Checkout the Examples directory for a project using this component.
+A TextField is an excellent way to improve UX. TextFields offer details
+that describe the usage and input results of text. For example, when a
+user enters an incorrect email, it is possible to display an error message
+under the TextField. Checkout the Examples directory for a project using this component.
 
 ![MaterialKitTextField](http://www.materialkit.io/MK/MaterialKitTextField.gif)
 
 ```swift
-let nameField: TextField = TextField(frame: CGRectMake(57, 100, 300, 24))
-nameField.placeholder = "First Name"
-nameField.font = RobotoFont.regularWithSize(20)
-nameField.textColor = MaterialColor.black
-nameField.titleLabel = UILabel()
-nameField.titleLabel!.font = RobotoFont.mediumWithSize(12)
-nameField.titleLabelNormalColor = MaterialColor.grey.lighten2
-nameField.titleLabelHighlightedColor = MaterialColor.blue.accent3
-nameField.clearButtonMode = .WhileEditing
+let textField: TextField = TextField(frame: CGRectMake(57, 100, 300, 24))
+textField.placeholder = "First Name"
+textField.font = RobotoFont.regularWithSize(20)
+textField.textColor = MaterialColor.black
 
-// Add nameField to UIViewController.
-view.addSubview(nameField)
+textField.titleLabel = UILabel()
+textField.titleLabel!.font = RobotoFont.mediumWithSize(12)
+textField.titleLabelColor = MaterialColor.grey.lighten1
+textField.titleLabelActiveColor = MaterialColor.blue.accent3
+textField.clearButtonMode = .WhileEditing
+
+// Add textField to UIViewController.
+view.addSubview(textField)
 ```
 
-<a name="materiallayer"/>
+<a name="textview"></a>
+### TextView
+
+Easily match any regular expression pattern in a body of text. Below is an example of the default hashtag pattern matching.
+
+![MaterialKitTextView](http://www.materialkit.io/MK/MaterialKitTextView.gif)
+
+Checkout the Examples Programmatic directory for a sample project using this wonderful component.
+
+<a name="materiallayer"></a>
 ### MaterialLayer
 
 MaterialLayer is a lightweight CAShapeLayer used throughout MaterialKit. It is designed to easily take shape, depth, and animations. Below is an example demonstrating the ease of adding shape and depth to MaterialLayer.
@@ -99,11 +151,11 @@ materialLayer.image = UIImage(named: "CosmicMindAppIcon")
 materialLayer.shape = .Circle
 materialLayer.shadowDepth = .Depth2
 
-// Add layer to UIViewController.
+// Add materialLayer to UIViewController.
 view.layer.addSublayer(materialLayer)
 ```
 
-<a name="materialview"/>
+<a name="materialview"></a>
 ### MaterialView
 
 MaterialView is the base UIView class used throughout MaterialKit. Like MaterialLayer, it is designed to easily take shape, depth, and animations. The major difference is that MaterialView has all the added features of the UIView class. Below is an example of setting a MaterialView's cornerRadius, shape, and depth.
@@ -117,31 +169,32 @@ materialView.shape = .Square
 materialView.shadowDepth = .Depth2
 materialView.cornerRadius = .Radius3
 
-// Add view to UIViewController.
+// Add materialView to UIViewController.
 view.addSubview(materialView)
 ```
 
-<a name="materialpulseview"/>
+<a name="materialpulseview"></a>
 ### MaterialPulseView
 
-MaterialPulseView is at the heart of all pulse animations. Any view that subclasses MaterialPulseView instantly inherits the pulse animation with full customizability.
+MaterialPulseView is at the heart of all pulse animations. Any view that subclasses MaterialPulseView instantly inherits the pulse animation with full customizability. Below is an example of using MaterialPulseView.
 
 ![MaterialKitMaterialPulseView](http://www.materialkit.io/MK/MaterialKitMaterialPulseView.gif)
 
 ```swift
-let materialPulseView: MaterialPulseView = MaterialPulseView(frame: CGRectMake(132, 132, 150, 150))
-materialPulseView.image = UIImage(named: "ContentAppIcon")
-materialPulseView.shape = .Circle
-materialPulseView.shadowDepth = .Depth2
+let pulseView: MaterialPulseView = MaterialPulseView(frame: CGRectMake(132, 132, 150, 150))
+pulseView.image = UIImage(named: "GraphKitAppIcon")
+pulseView.shape = .Square
+pulseView.depth = .Depth2
+pulseView.cornerRadius = .Radius4
 
-// Add view to UIViewController.
-view.addSubview(materialPulseView)
+// Add pulseView to UIViewController.
+view.addSubview(pulseView)
 ```
 
-<a name="flatbutton"/>
+<a name="flatbutton"></a>
 ### FlatButton
 
-A FlatButton is the best place to start when introducing MaterialKit buttons. It is simple, clean, and very effective. Below is an example of a FlatButton in action.
+A FlatButton is simple, clean, and very effective. Below is an example of a FlatButton in action.
 
 ![MaterialKitFlatButton](http://www.materialkit.io/MK/MaterialKitFlatButton.gif)
 
@@ -150,11 +203,11 @@ let button: FlatButton = FlatButton(frame: CGRectMake(107, 107, 200, 65))
 button.setTitle("Flat", forState: .Normal)
 button.titleLabel!.font = RobotoFont.mediumWithSize(32)
 
-// Add to UIViewController.
+// Add button to UIViewController.
 view.addSubview(button)
 ```
 
-<a name="raisedbutton"/>
+<a name="raisedbutton"></a>
 ### RaisedButton
 
 A RaisedButton is sure to get attention. Take a look at the following animation example.
@@ -166,11 +219,11 @@ let button: RaisedButton = RaisedButton(frame: CGRectMake(107, 207, 200, 65))
 button.setTitle("Raised", forState: .Normal)
 button.titleLabel!.font = RobotoFont.mediumWithSize(32)
 
-// Add to UIViewController.
+// Add button to UIViewController.
 view.addSubview(button)
 ```
 
-<a name="fabbutton"/>
+<a name="fabbutton"></a>
 ### FabButton
 
 A FabButton is essential to Material Design's overall look. Below showcases its beauty.
@@ -183,11 +236,90 @@ let button: FabButton = FabButton(frame: CGRectMake(175, 315, 64, 64))
 button.setImage(img, forState: .Normal)
 button.setImage(img, forState: .Highlighted)
 
-// Add to UIViewController.
+// Add button to UIViewController.
 view.addSubview(button)
 ```
 
-<a name="cardview"/>
+<a name="navigationbarview"></a>
+### NavigationBarView
+
+A NavigationBarView is a fully featured NavigationBar that supports orientation changes,
+background images, title and detail labels, both left and right button sets, and
+status bar settings. Below is an example of its usage.
+
+![MaterialKitNavigationBarView](http://www.materialkit.io/MK/MaterialKitNavigationBarView.gif)
+
+```swift
+let navigationBarView: NavigationBarView = NavigationBarView()
+navigationBarView.backgroundColor = MaterialColor.indigo.darken1
+
+/*
+To lighten the status bar - add the
+"View controller-based status bar appearance = NO"
+to your info.plist file and set the following property.
+*/
+navigationBarView.statusBarStyle = .LightContent
+
+// Title label.
+let titleLabel: UILabel = UILabel()
+titleLabel.text = "MaterialKit"
+titleLabel.textAlignment = .Left
+titleLabel.textColor = MaterialColor.white
+titleLabel.font = RobotoFont.regularWithSize(20)
+navigationBarView.titleLabel = titleLabel
+navigationBarView.titleLabelInset.left = 64
+
+// Detail label.
+let detailLabel: UILabel = UILabel()
+detailLabel.text = "Build Beautiful Software"
+detailLabel.textAlignment = .Left
+detailLabel.textColor = MaterialColor.white
+detailLabel.font = RobotoFont.regularWithSize(12)
+navigationBarView.detailLabel = detailLabel
+navigationBarView.detailLabelInset.left = 64
+
+// Menu button.
+let img1: UIImage? = UIImage(named: "ic_menu_white")
+let btn1: FlatButton = FlatButton()
+btn1.pulseColor = MaterialColor.white
+btn1.pulseFill = true
+btn1.pulseScale = false
+btn1.setImage(img1, forState: .Normal)
+btn1.setImage(img1, forState: .Highlighted)
+
+// Star button.
+let img2: UIImage? = UIImage(named: "ic_star_white")
+let btn2: FlatButton = FlatButton()
+btn2.pulseColor = MaterialColor.white
+btn2.pulseFill = true
+btn2.pulseScale = false
+btn2.setImage(img2, forState: .Normal)
+btn2.setImage(img2, forState: .Highlighted)
+
+// Search button.
+let img3: UIImage? = UIImage(named: "ic_search_white")
+let btn3: FlatButton = FlatButton()
+btn3.pulseColor = MaterialColor.white
+btn3.pulseFill = true
+btn3.pulseScale = false
+btn3.setImage(img3, forState: .Normal)
+btn3.setImage(img3, forState: .Highlighted)
+
+// Add buttons to left side.
+navigationBarView.leftButtons = [btn1]
+
+// Add buttons to right side.
+navigationBarView.rightButtons = [btn2, btn3]
+
+// To support orientation changes, use MaterialLayout.
+view.addSubview(navigationBarView)
+navigationBarView.translatesAutoresizingMaskIntoConstraints = false
+MaterialLayout.alignFromTop(view, child: navigationBarView)
+MaterialLayout.alignToParentHorizontally(view, child: navigationBarView)
+MaterialLayout.height(view, child: navigationBarView, height: 70)
+```
+
+<a name="cardview"></a>
 ### CardView
 
 Right out of the box to a fully customizable configuration, CardView always stands out. Take a look at a few examples in action and find more in the Examples directory.
@@ -204,7 +336,7 @@ titleLabel.textColor = MaterialColor.blue.darken1
 titleLabel.font = RobotoFont.mediumWithSize(20)
 cardView.titleLabel = titleLabel
 
-// Detail label
+// Detail label.
 let detailLabel: UILabel = UILabel()
 detailLabel.text = "It’s been a while, have you read any new books lately?"
 detailLabel.numberOfLines = 0
@@ -247,7 +379,6 @@ cardView.backgroundColor = MaterialColor.red.darken1
 cardView.pulseScale = false
 cardView.pulseColor = nil
 
-// Image - resize method is located in ContentKit or Examples project.
 cardView.image = UIImage(named: "iTunesArtwork")?.resize(toWidth: 400)
 cardView.contentsGravity = .BottomRight
 
@@ -258,7 +389,7 @@ titleLabel.textColor = MaterialColor.white
 titleLabel.font = RobotoFont.mediumWithSize(24)
 cardView.titleLabel = titleLabel
 
-// Detail label
+// Detail label.
 let detailLabel: UILabel = UILabel()
 detailLabel.text = "Build beautiful software."
 detailLabel.textColor = MaterialColor.white
@@ -290,9 +421,9 @@ Adjust the alignment of the UI elements to create different configurations of th
 
 ```swift
 let cardView: CardView = CardView()
-cardView.dividerInsetsRef.left = 100
-cardView.titleLabelInsetsRef.left = 100
-cardView.detailLabelInsetsRef.left = 100
+cardView.dividerInset.left = 100
+cardView.titleLabelInset.left = 100
+cardView.detailLabelInset.left = 100
 cardView.pulseColor = MaterialColor.teal.lighten4
 
 // Image.
@@ -305,7 +436,7 @@ titleLabel.text = "GraphKit"
 titleLabel.font = RobotoFont.mediumWithSize(24)
 cardView.titleLabel = titleLabel
 
-// Detail label
+// Detail label.
 let detailLabel: UILabel = UILabel()
 detailLabel.text = "Build scalable data-driven apps."
 detailLabel.numberOfLines = 0
@@ -380,7 +511,7 @@ MaterialLayout.alignFromTop(view, child: cardView, top: 100)
 MaterialLayout.alignToParentHorizontally(view, child: cardView, left: 20, right: 20)
 ```
 
-<a name="imagecardview"/>
+<a name="imagecardview"></a>
 ### ImageCardView
 
 Bold and attractive, ImageCardView is the next step from a CardView. In the Examples folder you will find examples using the ImageCardView. Below are some animations to give you an idea of the possibilities the ImageCardView has to offer.
@@ -400,9 +531,9 @@ titleLabel.text = "Welcome Back!"
 titleLabel.textColor = MaterialColor.white
 titleLabel.font = RobotoFont.mediumWithSize(24)
 imageCardView.titleLabel = titleLabel
-imageCardView.titleLabelInsetsRef.top = 100
+imageCardView.titleLabelInset.top = 100
 
-// Detail label
+// Detail label.
 let detailLabel: UILabel = UILabel()
 detailLabel.text = "It’s been a while, have you read any new books lately?"
 detailLabel.numberOfLines = 0
@@ -451,7 +582,7 @@ titleLabel.text = "Material Design"
 titleLabel.textColor = MaterialColor.white
 titleLabel.font = RobotoFont.regularWithSize(24)
 imageCardView.titleLabel = titleLabel
-imageCardView.titleLabelInsetsRef.top = 80
+imageCardView.titleLabelInset.top = 80
 
 // Star button.
 let img1: UIImage? = UIImage(named: "ic_star_grey_darken_2")
@@ -490,96 +621,42 @@ MaterialLayout.alignFromTop(view, child: imageCardView, top: 100)
 MaterialLayout.alignToParentHorizontally(view, child: imageCardView, left: 20, right: 20)
 ```
 
-<a name="navigationbarview"/>
-### NavigationBarView
-
-One of Material Design's greatest additions to UI is the NavigationBarView. In the Examples folder, you can checkout some code to get you started with this wonderful component.
-
-![MaterialKitNavigationBarView](http://www.materialkit.io/MK/MaterialKitNavigationBarView.gif)
-
-```swift
-let navigationBarView: NavigationBarView = NavigationBarView()
-
-// Stylize.
-navigationBarView.backgroundColor = MaterialColor.indigo.darken1
-
-// To lighten the status bar add the "View controller-based status bar appearance = NO"
-// to your info.plist file and set the following property.
-navigationBarView.statusBarStyle = .LightContent
-
-// Title label.
-let titleLabel: UILabel = UILabel()
-titleLabel.text = "MaterialKit"
-titleLabel.textAlignment = .Left
-titleLabel.textColor = MaterialColor.white
-titleLabel.font = RobotoFont.regularWithSize(20)
-navigationBarView.titleLabel = titleLabel
-navigationBarView.titleLabelInsetsRef.left = 64
-
-// Detail label
-let detailLabel: UILabel = UILabel()
-detailLabel.text = "Build Beautiful Software"
-detailLabel.textAlignment = .Left
-detailLabel.textColor = MaterialColor.white
-detailLabel.font = RobotoFont.regularWithSize(12)
-navigationBarView.detailLabel = detailLabel
-navigationBarView.detailLabelInsetsRef.left = 64
-
-// Menu button.
-let img1: UIImage? = UIImage(named: "ic_menu_white")
-let btn1: FlatButton = FlatButton()
-btn1.pulseColor = MaterialColor.white
-btn1.pulseFill = true
-btn1.pulseScale = false
-btn1.setImage(img1, forState: .Normal)
-btn1.setImage(img1, forState: .Highlighted)
-
-// Star button.
-let img2: UIImage? = UIImage(named: "ic_star_white")
-let btn2: FlatButton = FlatButton()
-btn2.pulseColor = MaterialColor.white
-btn2.pulseFill = true
-btn2.pulseScale = false
-btn2.setImage(img2, forState: .Normal)
-btn2.setImage(img2, forState: .Highlighted)
-
-// Search button.
-let img3: UIImage? = UIImage(named: "ic_search_white")
-let btn3: FlatButton = FlatButton()
-btn3.pulseColor = MaterialColor.white
-btn3.pulseFill = true
-btn3.pulseScale = false
-btn3.setImage(img3, forState: .Normal)
-btn3.setImage(img3, forState: .Highlighted)
-
-// Add buttons to left side.
-navigationBarView.leftButtons = [btn1]
-
-// Add buttons to right side.
-navigationBarView.rightButtons = [btn2, btn3]
-
-// To support orientation changes, use MaterialLayout.
-view.addSubview(navigationBarView)
-navigationBarView.translatesAutoresizingMaskIntoConstraints = false
-MaterialLayout.alignFromTop(view, child: navigationBarView)
-MaterialLayout.alignToParentHorizontally(view, child: navigationBarView)
-MaterialLayout.height(view, child: navigationBarView, height: 70)
-```
-
-<a name="sidenavigationviewcontroller"/>
-### SideNavigationViewController
-
-As elegant as is effective, the SideNavigationViewController is an excellent way to organize your app. In the Examples directory, there is an example project using this wonderful component.
-
-![MaterialKitSideNavigationViewController](http://www.materialkit.io/MK/MaterialKitSideNavigationViewController.gif)
-
-<a name="captureview"/>
+<a name="captureview"></a>
 ### CaptureView
 
-Add a new dimension of interactivity with CaptureView. CaptureView is a fully functional camera that is completely customizable. Checkout the Examples directory for a sample project using this wonderful component.
+Add a new dimension of interactivity with CaptureView. CaptureView is a fully functional camera that is completely customizable.
 
 ![MaterialKitCaptureView](http://www.materialkit.io/MK/MaterialKitCaptureView.jpg)
 
+Checkout the Examples Programmatic directory for a sample project using this wonderful component.
+
+<a name="materialcolor"></a>
+### MaterialColor
+
+MaterialColor is a complete Material Design color library. It uses base color values that expand to a range of lighter and darker shades, with the addition of accents. Below is an example of setting a FabButton's background color.
+
+![MaterialKitMaterialColorPalette](http://www.materialkit.io/MK/MaterialKitMaterialColorPalette.png)
+
+```swift
+let button: FabButton = FabButton()
+button.backgroundColor = MaterialColor.blue.darken1
+```
+
 ### License
 
-[AGPL-3.0](http://choosealicense.com/licenses/agpl-3.0/)
+Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+*   Redistributions of source code must retain the above copyright notice, this     
+    list of conditions and the following disclaimer.
+
+*   Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+*   Neither the name of MaterialKit nor the names of its
+    contributors may be used to endorse or promote products derived from
+    this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

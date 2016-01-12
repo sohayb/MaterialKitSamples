@@ -30,62 +30,11 @@
 
 import UIKit
 
-@objc(MaterialButton)
-public class MaterialButton : UIButton {
-	/**
-	A CAShapeLayer used to manage elements that would be affected by
-	the clipToBounds property of the backing layer. For example, this
-	allows the dropshadow effect on the backing layer, while clipping
-	the image to a desired shape within the visualLayer.
-	*/
-	public private(set) lazy var visualLayer: CAShapeLayer = CAShapeLayer()
-	
-	/// A CAShapeLayer used in the pulse animation.
-	public private(set) lazy var pulseLayer: CAShapeLayer = CAShapeLayer()
-	
-	/**
-	A base delegate reference used when subclassing MaterialView.
-	*/
-	public weak var delegate: MaterialDelegate?
-	
-	/// Sets whether the scaling animation should be used.
-	public lazy var pulseScale: Bool = true
-	
-	/// Enables and disables the spotlight effect.
-	public var spotlight: Bool = false {
-		didSet {
-			if spotlight {
-				pulseFill = false
-			}
-		}
-	}
-	
-	/**
-	Determines if the pulse animation should fill the entire
-	view.
-	*/
-	public var pulseFill: Bool = false {
-		didSet {
-			if pulseFill {
-				spotlight = false
-			}
-		}
-	}
-	
-	/// The opcaity value for the pulse animation.
-	public var pulseColorOpacity: CGFloat = 0.25 {
-		didSet {
-			updatePulseLayer()
-		}
-	}
-	
-	/// The color of the pulse effect.
-	public var pulseColor: UIColor? {
-		didSet {
-			updatePulseLayer()
-		}
-	}
-	
+@objc(TextViewDelegate)
+public protocol TextViewDelegate : UITextViewDelegate {}
+
+@objc(TextView)
+public class TextView: UITextView {
 	/**
 	This property is the same as clipsToBounds. It crops any of the view's
 	contents from bleeding past the view's frame. If an image is set using
@@ -286,12 +235,67 @@ public class MaterialButton : UIButton {
 	}
 	
 	/**
-	:name:	contentInsets
+	The title UILabel that is displayed when there is text. The 
+	titleLabel text value is updated with the placeholderLabel
+	text value before being displayed.
 	*/
-	public var contentInsetPreset: MaterialEdgeInsetPreset {
+	public var titleLabel: UILabel? {
 		didSet {
-			let value: UIEdgeInsets = MaterialEdgeInsetPresetToValue(contentInsetPreset)
-			contentEdgeInsets = UIEdgeInsetsMake(value.top, value.left, value.bottom, value.right)
+			prepareTitleLabel()
+		}
+	}
+	
+	/// The color of the titleLabel text when the textView is not active.
+	public var titleLabelColor: UIColor? {
+		didSet {
+			titleLabel?.textColor = titleLabelColor
+		}
+	}
+	
+	/// The color of the titleLabel text when the textView is active.
+	public var titleLabelActiveColor: UIColor?
+	
+	/**
+	A property that sets the distance between the textView and
+	titleLabel.
+	*/
+	public var titleLabelAnimationDistance: CGFloat = 16
+	
+	/// Placeholder UILabel view.
+	public var placeholderLabel: UILabel? {
+		didSet {
+			preparePlaceholderLabel()
+		}
+	}
+	
+	/// An override to the text property.
+	public override var text: String! {
+		didSet {
+			handleTextViewTextDidChange()
+		}
+	}
+	
+	/// An override to the attributedText property.
+	public override var attributedText: NSAttributedString! {
+		didSet {
+			handleTextViewTextDidChange()
+		}
+	}
+	
+	/**
+	Text container UIEdgeInset preset property. This updates the 
+	textContainerInset property with a preset value.
+	*/
+	public var textContainerInsetPreset: MaterialEdgeInsetPreset = .None {
+		didSet {
+			textContainerInset = MaterialEdgeInsetPresetToValue(textContainerInsetPreset)
+		}
+	}
+	
+	/// Text container UIEdgeInset property.
+	public override var textContainerInset: UIEdgeInsets {
+		didSet {
+			reloadView()
 		}
 	}
 	
@@ -300,11 +304,10 @@ public class MaterialButton : UIButton {
 	- Parameter aDecoder: A NSCoder instance.
 	*/
 	public required init?(coder aDecoder: NSCoder) {
-		borderWidth = .None
 		depth = .None
 		shape = .None
 		cornerRadius = .None
-		contentInsetPreset = .None
+		borderWidth = .None
 		super.init(coder: aDecoder)
 		prepareView()
 	}
@@ -314,20 +317,37 @@ public class MaterialButton : UIButton {
 	If AutoLayout is used, it is better to initilize the instance
 	using the init() initializer.
 	- Parameter frame: A CGRect instance.
+	- Parameter textContainer: A NSTextContainer instance.
 	*/
-	public override init(frame: CGRect) {
-		borderWidth = .None
+	public override init(frame: CGRect, textContainer: NSTextContainer?) {
 		depth = .None
 		shape = .None
 		cornerRadius = .None
-		contentInsetPreset = .None
-		super.init(frame: frame)
+		borderWidth = .None
+		super.init(frame: frame, textContainer: textContainer)
 		prepareView()
 	}
 	
-	/// A convenience initializer that is mostly used with AutoLayout.
-	public convenience init() {
-		self.init(frame: CGRectNull)
+	/**
+	A convenience initializer that is mostly used with AutoLayout.
+	- Parameter textContainer: A NSTextContainer instance.
+	*/
+	public convenience init(textContainer: NSTextContainer?) {
+		self.init(frame: CGRectNull, textContainer: textContainer)
+	}
+	
+	/** Denitializer. This should never be called unless you know
+	what you are doing.
+	*/
+	deinit {
+		removeNotificationHandlers()
+	}
+	
+	/// Overriding the layout callback for subviews.
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+		placeholderLabel?.preferredMaxLayoutWidth = textContainer.size.width - textContainer.lineFragmentPadding * 2
+		titleLabel?.frame.size.width = bounds.width
 	}
 	
 	/// Overriding the layout callback for sublayers.
@@ -335,7 +355,6 @@ public class MaterialButton : UIButton {
 		super.layoutSublayersOfLayer(layer)
 		if self.layer == layer {
 			layoutShape()
-			layoutVisualLayer()
 		}
 	}
 	
@@ -389,117 +408,47 @@ public class MaterialButton : UIButton {
 				animationDidStop(x, finished: true)
 			}
 		}
-		layoutVisualLayer()
 	}
 	
-	/**
-	A delegation method that is executed when the view has began a
-	touch event.
-	- Parameter touches: A set of UITouch objects.
-	- Parameter event: A UIEvent object.
-	*/
-	public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		super.touchesBegan(touches, withEvent: event)
-		let point: CGPoint = layer.convertPoint(touches.first!.locationInView(self), fromLayer: layer)
-		if true == layer.containsPoint(point) {
-			let r: CGFloat = (width < height ? height : width) / 2
-			let f: CGFloat = 3
-			let v: CGFloat = r / f
-			let d: CGFloat = 2 * f
-			let s: CGFloat = 1.05
-			let t: CFTimeInterval = 0.25
-			
-			if nil != pulseColor && 0 < pulseColorOpacity {
-				MaterialAnimation.animationDisabled {
-					self.pulseLayer.bounds = CGRectMake(0, 0, v, v)
-					self.pulseLayer.position = point
-					self.pulseLayer.cornerRadius = r / d
-					self.pulseLayer.hidden = false
-				}
-				pulseLayer.addAnimation(MaterialAnimation.scale(pulseFill ? 3 * d : 1.5 * d, duration: t), forKey: nil)
-			}
-			
-			if pulseScale {
-				layer.addAnimation(MaterialAnimation.scale(s, duration: t), forKey: nil)
-			}
+	/// Reloads necessary components when the view has changed.
+	internal func reloadView() {
+		if let p = placeholderLabel {
+			removeConstraints(constraints)
+			MaterialLayout.alignToParent(self,
+				child: p,
+				top: textContainerInset.top,
+				left: textContainerInset.left + textContainer.lineFragmentPadding,
+				bottom: textContainerInset.bottom,
+				right: textContainerInset.right + textContainer.lineFragmentPadding)
 		}
 	}
 	
-	/**
-	A delegation method that is executed when the view touch event is
-	moving.
-	- Parameter touches: A set of UITouch objects.
-	- Parameter event: A UIEvent object.
-	*/
-	public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		super.touchesMoved(touches, withEvent: event)
-		if spotlight {
-			let point: CGPoint = layer.convertPoint(touches.first!.locationInView(self), fromLayer: layer)
-			if layer.containsPoint(point) {
-				MaterialAnimation.animationDisabled {
-					self.pulseLayer.position = point
-				}
-			}
+	/// Notification handler for when text editing began.
+	internal func handleTextViewTextDidBegin() {
+		titleLabel?.textColor = titleLabelActiveColor
+	}
+	
+	/// Notification handler for when text changed.
+	internal func handleTextViewTextDidChange() {
+		if let p = placeholderLabel {
+			p.hidden = !(true == text?.isEmpty)
+		}
+		
+		if 0 < text?.utf16.count {
+			showTitleLabel()
+		} else if 0 == text?.utf16.count {
+			hideTitleLabel()
 		}
 	}
 	
-	/**
-	A delegation method that is executed when the view touch event has
-	ended.
-	- Parameter touches: A set of UITouch objects.
-	- Parameter event: A UIEvent object.
-	*/
-	public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		super.touchesEnded(touches, withEvent: event)
-		shrinkAnimation()
-	}
-	
-	/**
-	A delegation method that is executed when the view touch event has
-	been cancelled.
-	- Parameter touches: A set of UITouch objects.
-	- Parameter event: A UIEvent object.
-	*/
-	public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-		super.touchesCancelled(touches, withEvent: event)
-		shrinkAnimation()
-	}
-	
-	/**
-	:name:	actionForLayer
-	*/
-	public override func actionForLayer(layer: CALayer, forKey event: String) -> CAAction? {
-		return nil // returning nil enables the animations for the layer property that are normally disabled.
-	}
-	
-	/**
-	Prepares the view instance when intialized. When subclassing,
-	it is recommended to override the prepareView method
-	to initialize property values and other setup operations.
-	The super.prepareView method should always be called immediately
-	when subclassing.
-	*/
-	public func prepareView() {
-		prepareVisualLayer()
-		preparePulseLayer()
-		shadowColor = MaterialColor.black
-		borderColor = MaterialColor.black
-		pulseColor = MaterialColor.white
-		pulseColorOpacity = 0.25
-	}
-	
-	/// Prepares the visualLayer property.
-	internal func prepareVisualLayer() {
-		visualLayer.zPosition = 0
-		visualLayer.masksToBounds = true
-		layer.addSublayer(visualLayer)
-	}
-	
-	/// Manages the layout for the visualLayer property.
-	internal func layoutVisualLayer() {
-		visualLayer.frame = bounds
-		visualLayer.position = CGPointMake(width / 2, height / 2)
-		visualLayer.cornerRadius = layer.cornerRadius
+	/// Notification handler for when text editing ended.
+	internal func handleTextViewTextDidEnd() {
+		if 0 < text?.utf16.count {
+			showTitleLabel()
+		} else if 0 == text?.utf16.count {
+			hideTitleLabel()
+		}
+		titleLabel?.textColor = titleLabelColor
 	}
 	
 	/// Manages the layout for the shape of the view instance.
@@ -509,32 +458,94 @@ public class MaterialButton : UIButton {
 		}
 	}
 	
-	/// Prepares the pulseLayer property.
-	internal func preparePulseLayer() {
-		pulseLayer.hidden = true
-		pulseLayer.zPosition = 1
-		visualLayer.addSublayer(pulseLayer)
+	/**
+	Prepares the view instance when intialized. When subclassing,
+	it is recommended to override the prepareView method
+	to initialize property values and other setup operations.
+	The super.prepareView method should always be called immediately
+	when subclassing.
+	*/
+	private func prepareView() {
+		textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+		backgroundColor = MaterialColor.white
+		masksToBounds = false
+		removeNotificationHandlers()
+		prepareNotificationHandlers()
+		reloadView()
 	}
 	
-	/// Updates the pulseLayer when settings have changed.
-	internal func updatePulseLayer() {
-		pulseLayer.backgroundColor = pulseColor?.colorWithAlphaComponent(pulseColorOpacity).CGColor
+	/// prepares the placeholderLabel property.
+	private func preparePlaceholderLabel() {
+		if let v: UILabel = placeholderLabel {
+			v.translatesAutoresizingMaskIntoConstraints = false
+			v.font = font
+			v.textAlignment = textAlignment
+			v.numberOfLines = 0
+			v.backgroundColor = MaterialColor.clear
+			addSubview(v)
+			reloadView()
+			handleTextViewTextDidChange()
+		}
 	}
 	
-	/// Executes the shrink animation for the pulse effect.
-	internal func shrinkAnimation() {
-		let t: CFTimeInterval = 0.25
-		let s: CGFloat = 1
-		
-		if nil != pulseColor && 0 < pulseColorOpacity {
-			MaterialAnimation.animateWithDuration(t, animations: {
-				self.pulseLayer.hidden = true
-			})
-			pulseLayer.addAnimation(MaterialAnimation.scale(s, duration: t), forKey: nil)
+	/// Prepares the titleLabel property.
+	private func prepareTitleLabel() {
+		if let v: UILabel = titleLabel {
+			v.hidden = true
+			addSubview(v)
+			if 0 < text?.utf16.count {
+				showTitleLabel()
+			} else {
+				v.alpha = 0
+			}
 		}
-		
-		if pulseScale {
-			layer.addAnimation(MaterialAnimation.scale(s, duration: t), forKey: nil)
+	}
+	
+	/// Shows and animates the titleLabel property.
+	private func showTitleLabel() {
+		if let v: UILabel = titleLabel {
+			if v.hidden {
+				if let s: String = placeholderLabel?.text {
+					if 0 == v.text?.utf16.count || nil == v.text {
+						v.text = s
+					}
+				}
+				let h: CGFloat = v.font.pointSize
+				v.frame = CGRectMake(0, -h, bounds.width, h)
+				v.hidden = false
+				UIView.animateWithDuration(0.25, animations: { [unowned self] in
+					v.alpha = 1
+					v.frame.origin.y = -v.frame.height - self.titleLabelAnimationDistance
+				})
+			}
 		}
+	}
+	
+	/// Hides and animates the titleLabel property.
+	private func hideTitleLabel() {
+		if let v: UILabel = titleLabel {
+			if !v.hidden {
+				UIView.animateWithDuration(0.25, animations: {
+					v.alpha = 0
+					v.frame.origin.y = -v.frame.height
+				}) { _ in
+					v.hidden = true
+				}
+			}
+		}
+	}
+	
+	/// Prepares the Notification handlers.
+	private func prepareNotificationHandlers() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidBegin", name: UITextViewTextDidBeginEditingNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidChange", name: UITextViewTextDidChangeNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleTextViewTextDidEnd", name: UITextViewTextDidEndEditingNotification, object: nil)
+	}
+	
+	/// Removes the Notification handlers.
+	private func removeNotificationHandlers() {
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidBeginEditingNotification, object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidChangeNotification, object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidEndEditingNotification, object: nil)
 	}
 }

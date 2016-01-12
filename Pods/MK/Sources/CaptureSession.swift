@@ -1,20 +1,32 @@
-//
-// Copyright (C) 2015 CosmicMind, Inc. <http://cosmicmind.io> and other CosmicMind contributors
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program located at the root of the software package
-// in a file called LICENSE.  If not, see <http://www.gnu.org/licenses/>.
-//
+/*
+* Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+*	*	Redistributions of source code must retain the above copyright notice, this
+*		list of conditions and the following disclaimer.
+*
+*	*	Redistributions in binary form must reproduce the above copyright notice,
+*		this list of conditions and the following disclaimer in the documentation
+*		and/or other materials provided with the distribution.
+*
+*	*	Neither the name of MaterialKit nor the names of its
+*		contributors may be used to endorse or promote products derived from
+*		this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 import UIKit
 import AVFoundation
@@ -264,7 +276,11 @@ public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 					error = e
 				}
 			} else {
-				error = NSError(domain: "[MaterialKit Error: Unsupported focusMode.]", code: 0, userInfo: nil)
+				var userInfo: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+				userInfo[NSLocalizedDescriptionKey] = "[MaterialKit Error: Unsupported focusMode.]"
+				userInfo[NSLocalizedFailureReasonErrorKey] = "[MaterialKit Error: Unsupported focusMode.]"
+				error = NSError(domain: "io.materialkit.CaptureView", code: 1111, userInfo: userInfo)
+				userInfo[NSUnderlyingErrorKey] = error
 			}
 			if let e: NSError = error {
 				delegate?.captureSessionFailedWithError?(self, error: e)
@@ -291,7 +307,11 @@ public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 					error = e
 				}
 			} else {
-				error = NSError(domain: "[MaterialKit Error: Unsupported flashMode.]", code: 0, userInfo: nil)
+				var userInfo: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+				userInfo[NSLocalizedDescriptionKey] = "[MaterialKit Error: Unsupported flashMode.]"
+				userInfo[NSLocalizedFailureReasonErrorKey] = "[MaterialKit Error: Unsupported flashMode.]"
+				error = NSError(domain: "io.materialkit.CaptureView", code: 2222, userInfo: userInfo)
+				userInfo[NSUnderlyingErrorKey] = error
 			}
 			if let e: NSError = error {
 				delegate?.captureSessionFailedWithError?(self, error: e)
@@ -318,7 +338,11 @@ public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 					error = e
 				}
 			} else {
-				error = NSError(domain: "[MaterialKit Error: Unsupported torchMode.]", code: 0, userInfo: nil)
+				var userInfo: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+				userInfo[NSLocalizedDescriptionKey] = "[MaterialKit Error: Unsupported torchMode.]"
+				userInfo[NSLocalizedFailureReasonErrorKey] = "[MaterialKit Error: Unsupported torchMode.]"
+				error = NSError(domain: "io.materialkit.CaptureView", code: 3333, userInfo: userInfo)
+				userInfo[NSUnderlyingErrorKey] = error
 			}
 			if let e: NSError = error {
 				delegate?.captureSessionFailedWithError?(self, error: e)
@@ -460,7 +484,11 @@ public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 				error = e
 			}
 		} else {
-			error = NSError(domain: "[MaterialKit Error: Unsupported focusAtPoint.]", code: 0, userInfo: nil)
+			var userInfo: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+			userInfo[NSLocalizedDescriptionKey] = "[MaterialKit Error: Unsupported focusAtPoint.]"
+			userInfo[NSLocalizedFailureReasonErrorKey] = "[MaterialKit Error: Unsupported focusAtPoint.]"
+			error = NSError(domain: "io.materialkit.CaptureView", code: 4444, userInfo: userInfo)
+			userInfo[NSUnderlyingErrorKey] = error
 		}
 		if let e: NSError = error {
 			delegate?.captureSessionFailedWithError?(self, error: e)
@@ -486,7 +514,11 @@ public class CaptureSession : NSObject, AVCaptureFileOutputRecordingDelegate {
 				error = e
 			}
 		} else {
-			error = NSError(domain: "[MaterialKit Error: Unsupported exposeAtPoint.]", code: 0, userInfo: nil)
+			var userInfo: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
+			userInfo[NSLocalizedDescriptionKey] = "[MaterialKit Error: Unsupported exposeAtPoint.]"
+			userInfo[NSLocalizedFailureReasonErrorKey] = "[MaterialKit Error: Unsupported exposeAtPoint.]"
+			error = NSError(domain: "io.materialkit.CaptureView", code: 5555, userInfo: userInfo)
+			userInfo[NSUnderlyingErrorKey] = error
 		}
 		if let e: NSError = error {
 			delegate?.captureSessionFailedWithError?(self, error: e)

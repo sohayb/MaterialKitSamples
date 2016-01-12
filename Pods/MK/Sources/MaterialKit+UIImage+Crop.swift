@@ -30,40 +30,24 @@
 
 import UIKit
 
-public typealias MaterialAnimationRotationModeType = String
-
-public enum MaterialAnimationRotationMode {
-	case None
-	case Auto
-	case AutoReverse
-}
-
-/**
-	:name:	MaterialAnimationRotationModeToValue
-*/
-public func MaterialAnimationRotationModeToValue(mode: MaterialAnimationRotationMode) -> MaterialAnimationRotationModeType? {
-	switch mode {
-	case .None:
-		return nil
-	case .Auto:
-		return kCAAnimationRotateAuto
-	case .AutoReverse:
-		return kCAAnimationRotateAutoReverse
-	}
-}
-
-public extension MaterialAnimation {
+public extension UIImage {
 	/**
-	:name: path
+		:name:	crop
 	*/
-	public static func path(bezierPath: UIBezierPath, mode: MaterialAnimationRotationMode = .Auto, duration: CFTimeInterval? = nil) -> CAKeyframeAnimation {
-		let animation: CAKeyframeAnimation = CAKeyframeAnimation()
-		animation.keyPath = "position"
-		animation.path = bezierPath.CGPath
-		animation.rotationMode = MaterialAnimationRotationModeToValue(mode)
-		if let d = duration {
-			animation.duration = d
-		}
-		return animation
+	public func crop(var toWidth w: CGFloat, var toHeight h: CGFloat) -> UIImage? {
+		let g: UIImage?
+		let b: Bool = width > height
+		let s: CGFloat = b ? h / height : w / width
+		let t: CGSize = CGSizeMake(w, h)
+		
+		w = width * s
+		h = height * s
+		
+		UIGraphicsBeginImageContext(t)
+		drawInRect(b ? CGRectMake(-1 * (w - t.width) / 2, 0, w, h) : CGRectMake(0, -1 * (h - t.height) / 2, w, h), blendMode: .Normal, alpha: 1)
+		g = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		return g!
 	}
 }

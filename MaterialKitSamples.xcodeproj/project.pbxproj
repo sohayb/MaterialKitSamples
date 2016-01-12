@@ -36,6 +36,7 @@
 		3F9807F31C1A0E2B000E6BFF /* MaterialButton.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807E91C1A0E2B000E6BFF /* MaterialButton.storyboard */; };
 		3F9807F41C1A0E2B000E6BFF /* MaterialPulseView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807EB1C1A0E2B000E6BFF /* MaterialPulseView.storyboard */; };
 		3F9807F51C1A0E2B000E6BFF /* NavigationBarView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9807ED1C1A0E2B000E6BFF /* NavigationBarView.storyboard */; };
+		3FB77DA11C4515A4002ABB01 /* PTextViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB77DA01C4515A4002ABB01 /* PTextViewViewController.swift */; };
 		A28878F1BBDD941962A4C650 /* Pods_MaterialKitSamples.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		3F9807EA1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialButton.storyboard; sourceTree = "<group>"; };
 		3F9807EC1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MaterialPulseView.storyboard; sourceTree = "<group>"; };
 		3F9807EE1C1A0E2B000E6BFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NavigationBarView.storyboard; sourceTree = "<group>"; };
+		3FB77DA01C4515A4002ABB01 /* PTextViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTextViewViewController.swift; sourceTree = "<group>"; };
 		BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaterialKitSamples.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MaterialKitSamples/Pods-MaterialKitSamples.debug.xcconfig"; sourceTree = "<group>"; };
 		F04F92CE1A0CD46F34304707 /* Pods_MaterialKitSamples.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaterialKitSamples.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -116,6 +118,7 @@
 				3F59BBC51C233DE90019CA47 /* PMaterialViewController.swift */,
 				3F59BBC61C233DE90019CA47 /* PNavigationBarViewController.swift */,
 				3F59BBC71C233DE90019CA47 /* PTextFieldViewController.swift */,
+				3FB77DA01C4515A4002ABB01 /* PTextViewViewController.swift */,
 			);
 			name = Programmatic;
 			path = Controllers/Programmatic;
@@ -229,6 +232,7 @@
 				TargetAttributes = {
 					3F91A4D71C1A0AEC00C7A3EB = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = XQ96UBL3E5;
 					};
 				};
 			};
@@ -342,6 +346,7 @@
 				3F59BBB51C233CCC0019CA47 /* CardViewController.swift in Sources */,
 				3F59BBD21C233DE90019CA47 /* PNavigationBarViewController.swift in Sources */,
 				3F59BBAD1C23398F0019CA47 /* ProgrammaticViewController.swift in Sources */,
+				3FB77DA11C4515A4002ABB01 /* PTextViewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +498,7 @@
 			baseConfigurationReference = BE03388B73776F66AEA0C695 /* Pods-MaterialKitSamples.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alaa Khoder (85FT6SNT74)";
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -506,6 +512,7 @@
 			baseConfigurationReference = 0A02AE484AB1F9CF54C6AEC0 /* Pods-MaterialKitSamples.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alaa Khoder (85FT6SNT74)";
 				INFOPLIST_FILE = MaterialKitSamples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

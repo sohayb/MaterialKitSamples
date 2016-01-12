@@ -1,20 +1,32 @@
-//
-// Copyright (C) 2015 CosmicMind, Inc. <http://cosmicmind.io> and other CosmicMind contributors
-//
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published
-// by the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with this program located at the root of the software package
-// in a file called LICENSE.  If not, see <http://www.gnu.org/licenses/>.
-//
+/*
+* Copyright (C) 2015 - 2016, Daniel Dahan and CosmicMind, Inc. <http://cosmicmind.io>.
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*
+*	*	Redistributions of source code must retain the above copyright notice, this
+*		list of conditions and the following disclaimer.
+*
+*	*	Redistributions in binary form must reproduce the above copyright notice,
+*		this list of conditions and the following disclaimer in the documentation
+*		and/or other materials provided with the distribution.
+*
+*	*	Neither the name of MaterialKit nor the names of its
+*		contributors may be used to endorse or promote products derived from
+*		this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+* FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+* DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+* SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+* CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+* OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+* OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 import UIKit
 
@@ -31,16 +43,16 @@ public class NavigationBarView : MaterialView {
 	/**
 	:name:	contentInsets
 	*/
-	public var contentInsets: MaterialEdgeInsets = .None {
+	public var contentInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			contentInsetsRef = MaterialEdgeInsetsToValue(contentInsets)
+			contentInset = MaterialEdgeInsetPresetToValue(contentInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	contentInsetsRef
+	:name:	contentInset
 	*/
-	public var contentInsetsRef: UIEdgeInsets = MaterialTheme.navigationBarView.contentInsetsRef {
+	public var contentInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.Square2) {
 		didSet {
 			reloadView()
 		}
@@ -49,16 +61,16 @@ public class NavigationBarView : MaterialView {
 	/**
 	:name:	titleLabelInsets
 	*/
-	public var titleLabelInsets: MaterialEdgeInsets = .None {
+	public var titleLabelInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			titleLabelInsetsRef = MaterialEdgeInsetsToValue(titleLabelInsets)
+			titleLabelInset = MaterialEdgeInsetPresetToValue(titleLabelInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	titleLabelInsetsRef
+	:name:	titleLabelInset
 	*/
-	public var titleLabelInsetsRef: UIEdgeInsets = MaterialTheme.navigationBarView.titleLabelInsetsRef {
+	public var titleLabelInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) {
 		didSet {
 			reloadView()
 		}
@@ -77,16 +89,16 @@ public class NavigationBarView : MaterialView {
 	/**
 	:name:	detailLabelInsets
 	*/
-	public var detailLabelInsets: MaterialEdgeInsets = .None {
+	public var detailLabelInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			detailLabelInsetsRef = MaterialEdgeInsetsToValue(detailLabelInsets)
+			detailLabelInset = MaterialEdgeInsetPresetToValue(detailLabelInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	detailLabelInsetsRef
+	:name:	detailLabelInset
 	*/
-	public var detailLabelInsetsRef: UIEdgeInsets = MaterialTheme.navigationBarView.detailLabelInsetsRef {
+	public var detailLabelInset: UIEdgeInsets = MaterialEdgeInsetPresetToValue(.None) {
 		didSet {
 			reloadView()
 		}
@@ -105,16 +117,16 @@ public class NavigationBarView : MaterialView {
 	/**
 	:name:	leftButtonsInsets
 	*/
-	public var leftButtonsInsets: MaterialEdgeInsets = .None {
+	public var leftButtonsInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			leftButtonsInsetsRef = MaterialEdgeInsetsToValue(leftButtonsInsets)
+			leftButtonsInset = MaterialEdgeInsetPresetToValue(leftButtonsInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	leftButtonsInsetsRef
+	:name:	leftButtonsInset
 	*/
-	public var leftButtonsInsetsRef: UIEdgeInsets = MaterialTheme.navigationBarView.leftButtonsInsetsRef {
+	public var leftButtonsInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) {
 		didSet {
 			reloadView()
 		}
@@ -137,16 +149,16 @@ public class NavigationBarView : MaterialView {
 	/**
 	:name:	rightButtonsInsets
 	*/
-	public var rightButtonsInsets: MaterialEdgeInsets = .None {
+	public var rightButtonsInsetPreset: MaterialEdgeInsetPreset = .None {
 		didSet {
-			rightButtonsInsetsRef = MaterialEdgeInsetsToValue(rightButtonsInsets)
+			rightButtonsInset = MaterialEdgeInsetPresetToValue(rightButtonsInsetPreset)
 		}
 	}
 	
 	/**
-	:name:	rightButtonsInsetsRef
+	:name:	rightButtonsInset
 	*/
-	public var rightButtonsInsetsRef: UIEdgeInsets = MaterialTheme.navigationBarView.rightButtonsInsetsRef {
+	public var rightButtonsInset: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0) {
 		didSet {
 			reloadView()
 		}
@@ -184,14 +196,14 @@ public class NavigationBarView : MaterialView {
 	:name:	init
 	*/
 	public convenience init() {
-		self.init(frame: CGRectMake(MaterialTheme.navigationBarView.x, MaterialTheme.navigationBarView.y, MaterialTheme.navigationBarView.width, MaterialTheme.navigationBarView.height))
+		self.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 70))
 	}
 	
 	/**
 	:name:	init
 	*/
 	public convenience init?(titleLabel: UILabel? = nil, detailLabel: UILabel? = nil, leftButtons: Array<UIButton>? = nil, rightButtons: Array<UIButton>? = nil) {
-		self.init(frame: CGRectMake(MaterialTheme.navigationBarView.x, MaterialTheme.navigationBarView.y, MaterialTheme.navigationBarView.width, MaterialTheme.navigationBarView.height))
+		self.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 70))
 		prepareProperties(titleLabel, detailLabel: detailLabel, leftButtons: leftButtons, rightButtons: rightButtons)
 	}
 	
@@ -211,10 +223,10 @@ public class NavigationBarView : MaterialView {
 		
 		if nil != titleLabel {
 			verticalFormat += "-(insetTop)"
-			metrics["insetTop"] = contentInsetsRef.top + titleLabelInsetsRef.top
+			metrics["insetTop"] = contentInset.top + titleLabelInset.top
 		} else if nil != detailLabel {
 			verticalFormat += "-(insetTop)"
-			metrics["insetTop"] = contentInsetsRef.top + detailLabelInsetsRef.top
+			metrics["insetTop"] = contentInset.top + detailLabelInset.top
 		}
 		
 		// title
@@ -223,21 +235,21 @@ public class NavigationBarView : MaterialView {
 			views["titleLabel"] = v
 			
 			addSubview(v)
-			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInsetsRef.left + titleLabelInsetsRef.left, right: contentInsetsRef.right + titleLabelInsetsRef.right)
+			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + titleLabelInset.left, right: contentInset.right + titleLabelInset.right)
 		}
 		
 		// detail
 		if let v = detailLabel {
 			if nil != titleLabel {
 				verticalFormat += "-(insetB)"
-				metrics["insetB"] = titleLabelInsetsRef.bottom + detailLabelInsetsRef.top
+				metrics["insetB"] = titleLabelInset.bottom + detailLabelInset.top
 			}
 			
 			verticalFormat += "-[detailLabel]"
 			views["detailLabel"] = v
 			
 			addSubview(v)
-			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInsetsRef.left + detailLabelInsetsRef.left, right: contentInsetsRef.right + detailLabelInsetsRef.right)
+			MaterialLayout.alignToParentHorizontally(self, child: v, left: contentInset.left + detailLabelInset.left, right: contentInset.right + detailLabelInset.right)
 		}
 		
 		// leftButtons
@@ -260,10 +272,10 @@ public class NavigationBarView : MaterialView {
 					h += "[\(k)]"
 					
 					addSubview(b)
-					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInsetsRef.bottom + leftButtonsInsetsRef.bottom)
+					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + leftButtonsInset.bottom)
 				}
 				
-				addConstraints(MaterialLayout.constraint(h, options: [], metrics: ["left" : contentInsetsRef.left + leftButtonsInsetsRef.left, "left_right" : leftButtonsInsetsRef.left + leftButtonsInsetsRef.right], views: d))
+				addConstraints(MaterialLayout.constraint(h, options: [], metrics: ["left" : contentInset.left + leftButtonsInset.left, "left_right" : leftButtonsInset.left + leftButtonsInset.right], views: d))
 			}
 		}
 		
@@ -288,24 +300,24 @@ public class NavigationBarView : MaterialView {
 					}
 					
 					addSubview(b)
-					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInsetsRef.bottom + rightButtonsInsetsRef.bottom)
+					MaterialLayout.alignFromBottom(self, child: b, bottom: contentInset.bottom + rightButtonsInset.bottom)
 				}
 				
-				addConstraints(MaterialLayout.constraint(h + "|", options: [], metrics: ["right" : contentInsetsRef.right + rightButtonsInsetsRef.right, "right_left" : rightButtonsInsetsRef.right + rightButtonsInsetsRef.left], views: d))
+				addConstraints(MaterialLayout.constraint(h + "|", options: [], metrics: ["right" : contentInset.right + rightButtonsInset.right, "right_left" : rightButtonsInset.right + rightButtonsInset.left], views: d))
 			}
 		}
 		
 		if nil != detailLabel {
 			if nil == metrics["insetC"] {
-				metrics["insetBottom"] = contentInsetsRef.bottom + detailLabelInsetsRef.bottom
+				metrics["insetBottom"] = contentInset.bottom + detailLabelInset.bottom
 			} else {
-				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInsetsRef.bottom
+				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + detailLabelInset.bottom
 			}
 		} else if nil != titleLabel {
 			if nil == metrics["insetC"] {
-				metrics["insetBottom"] = contentInsetsRef.bottom + titleLabelInsetsRef.bottom
+				metrics["insetBottom"] = contentInset.bottom + titleLabelInset.bottom
 			} else {
-				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + titleLabelInsetsRef.bottom
+				metrics["insetC"] = (metrics["insetC"] as! CGFloat) + titleLabelInset.bottom
 			}
 		}
 		
@@ -320,18 +332,7 @@ public class NavigationBarView : MaterialView {
 	*/
 	public override func prepareView() {
 		super.prepareView()
-		userInteractionEnabled = MaterialTheme.navigationBarView.userInteractionEnabled
-		backgroundColor = MaterialTheme.navigationBarView.backgroundColor
-		
-		contentsRect = MaterialTheme.navigationBarView.contentsRect
-		contentsCenter = MaterialTheme.navigationBarView.contentsCenter
-		contentsScale = MaterialTheme.navigationBarView.contentsScale
-		contentsGravity = MaterialTheme.navigationBarView.contentsGravity
-		shadowDepth = MaterialTheme.navigationBarView.shadowDepth
-		shadowColor = MaterialTheme.navigationBarView.shadowColor
-		zPosition = MaterialTheme.navigationBarView.zPosition
-		borderWidth = MaterialTheme.navigationBarView.borderWidth
-		borderColor = MaterialTheme.navigationBarView.bordercolor
+		depth = .Depth2
 	}
 	
 	/**
